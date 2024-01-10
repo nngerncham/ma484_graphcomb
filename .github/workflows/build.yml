@@ -1,0 +1,57 @@
+name: Build and Release LaTeX Project
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup LaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: notes/
+          root_file: template.tex
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            notes/template.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-assets
+          path: notes/template.pdf
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Release Asset
+        uses: actions/download-artifact@v2
+        with:
+          name: release-assets
+          path: /tmp
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: /tmp/template.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
