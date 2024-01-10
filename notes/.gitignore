@@ -1,3 +1,8 @@
+*.pdf
+.DS_Store
+
+.ipynb_checkpoints/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -299,5 +304,3 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
-
-.DS_Store
