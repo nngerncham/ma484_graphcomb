@@ -47,7 +47,7 @@
   \caption{(Left to right) Eulerian, semi-Eulerian, and non-Eulerian graphs}\label{fig:eulerian-graphs}
 \end{figure}
 
-\begin{theorem}[Euler, 1736]
+\begin{theorem}[Euler, 1736]\label{thm:euler-graph-criterion}
   A connected graph \(G\) is Eulerian if and only if the degree of each vertex 
   of \(G\) is even.
 \end{theorem}
@@ -78,4 +78,53 @@
 
 \section{Fleury's Algorithm}
 
+The proof of Theorem \ref{thm:euler-graph-criterion} described a procedure
+for constructing an Eulerian Circuit. In this section, we describe another
+algorithm that can be used to construct an Eulerian Circuit as well. Before
+that, let us describe the notion of a bridge first. A \textit{bridge} refers to
+an edge that disconnects the graph if removed.
 
+\begin{algorithm}
+\caption{Fleury's Algorithm}
+\label{alg:fleury-algorithm}
+\begin{algorithmic}
+  \Input{Graph \(G\)}
+  \Require{\(G\) connected, every \(v \in V(G)\) has even degree}
+  \Output{An Eulerian Circuit \(R\) of \(G\)}
+  \State{\(H \gets G\)}
+  \State{\(v \gets x\) for any vertex \(x \in G\)}
+  \State{\(R \gets \{x\}\)}
+  \While{\(H\) is not empty}
+    \If{\(v\) only has one neighbor \(u\) in \(H\)}
+      \State{Remove the edge \((v, u)\) from \(H\) and add to \(R\)}
+      \State{Add \(u\) to \(R\)}
+      \State{\(v \gets u\)}
+    \ElsIf{\(v\) has multiple neighbors in \(H\)}
+      \State{Pick \(u \in N(v)\) such that the edge \((v, u)\) is not a bridge
+      for \(H\)}
+      \State{Remove the edge \((v, u)\) from \(H\) and add to \(R\)}
+      \State{Add \(u\) to \(R\)}
+      \State{\(v \gets u\)}
+    \EndIf
+  \EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\begin{figure}[ht]
+\begin{nexample}
+  Let us produce an Euler Circuit. The number indicates the order of the
+  circuit.
+
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/l02/fleury-example}
+  \caption{Resulting Euler Circuit from running Fleury's Algorithm}
+\end{nexample}
+\end{figure}
+
+\begin{remark}
+  In order for a graph to be semi-Eulerian, the degree of every vertex must be
+  even except for two. Namely, this refers to the vertices at which the graph
+  starts and ends at. It is also possible to run Fleury's Algortihm to produce
+  an Euler Trail on graphs with this condition by starting on one of the
+  vertices with an odd degree.
+\end{remark}
