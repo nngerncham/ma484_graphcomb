@@ -72,6 +72,26 @@ formal definition.
 \end{nexample}
 \end{figure}
 
+\subsection*{Identifying Non-isomorphic Graphs}
+
+What about identifying non-isomorphic graphs? We have a few ways:
+\begin{itemize}
+  \item Check \(|V|\)
+  \item Check \(|E|\)
+  \item Check the degrees of the vertices---\textit{the degree sequence}
+  \item Check the subgraphs
+    \begin{itemize}
+      \item Check the length of the cycles
+    \end{itemize}
+  \item Show that it is impossible to come up with a bijection
+\end{itemize}
+
+\begin{figure}[ht]
+\begin{nexample}
+  ...
+\end{nexample}
+\end{figure}
+
 \section{Subgraphs}
 
 \begin{definition}[Subgraph]
@@ -109,6 +129,8 @@ subgraph called the \textit{induced subgragh}.
   \end{center}
 \end{nexample}
 \end{figure}
+
+\section{Types of Graphs}
 
 \begin{definition}[Complete Graphs]
   \textit{Complete graphs}, often denoted \(K_n\), are graphs with \(n\) vertices and
@@ -218,6 +240,8 @@ most two. For the \textit{end points} of a path, the degree is exactly one.
 \end{nexample}
 \end{figure}
 
+\section{Relevant Theorems}
+
 \begin{theorem}
   Let \(G\) be a simple graph. If \(G\) is disconnected, then \(\overline{G}\) is connected.
 \end{theorem}
@@ -237,3 +261,56 @@ most two. For the \textit{end points} of a path, the degree is exactly one.
   w\).
 \end{proof}
 
+\begin{definition}[Distance]
+  The \textit{distance} from vertex \(u\) to vertex \(v\) is the length of the
+  shortest path from \(u\) to \(v\).
+\end{definition}
+
+\begin{theorem}
+  A non-trivial graph \(G\) is a bipartite graph if and only if \(G\) contains
+  no odd cycles.
+\end{theorem}
+
+\begin{proof}
+  First, we will show the forward direction: If \(G\) is bipartite then
+  every cycle in \(G\) is even. That is, we will show that
+  \(m\) is odd for every cycle \(v_0 \to
+  v_1, ..., v_m \to v_0\) in \(G\). Since \(G\) is bipartite, we can separate
+  the vertices into sets \(A\) and \(B\). Without loss of generality, suppose
+  that \(v_0 \in A\). Then, we have \(v_1 \in B\), \(v_2 \in A\), and so on.
+  Since we are considering a cycle, we must end at vertex \(v_0\). Hence,
+  \(v_m\) must be in \(B\). Since every all \textit{even vertices} are in \(A\) and \textit{odd vertices} are in \(B\), we can conclude that \(m\) is an odd number.  
+
+  Now, we will show the converse case: If there are no odd cycles, then \(G\) is bipartite. Assume to the contrary that \(G\) is \textbf{not} bipartite. We will show that \(G\) contains an odd cycle. We will now prove this by case:
+  \begin{itemize}
+    \item Let us consider the case when \(G\) is connected. Consider the vertex \(v \in V(G)\) and put \(v \in A\). Then, put every vertex with odd distance from \(v\) in a set \(B\) and every vertex with even distance from \(v\) in the set \(A\). Since \(G\) is not bipartite, there must be an edge within the set \(A\) or \(B\). This is a contradiction 
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}
+  Let \(r\) and \(n\) be integers with \(0 \leq r \leq n-1\). There exists an
+  \(r\)-regular graph of order \(n\) if and only if at least one of \(r\) or
+  \(n\) is even.
+\end{theorem}
+
+\begin{proof}
+  We will first show the forward direction: If there is an \(r\) regular graph
+  of order \(n\), then at least one of \(r\) or \(n\) is even. Assume to the
+  contrary that both \(r\) and \(n\) are odd. Consider
+  \[
+  \begin{aligned}
+    \sum_{v \in G} \deg{v} = \underbrace{r + r + ... + r}_{\text{\(n\) times}} =
+    \text{ odd number [since odd multiplied by odd is odd]}
+  \end{aligned}
+  \]
+  This is impossible due to the handshaking lemma since the sum of the degrees
+  is even. Thus, we can conclude that no such graph exists\dots
+
+  Now, we will show the converse direction: If at least one of \(r\) or \(n\) is
+  even, then there exists an \(r\)-regular graph of order \(n\). We will show
+  these by case:
+  
+  \textit{Case 1: \(r\) is even.} Arrange the vertices into a round-shape. Then, for each \(v \in V(G)\), connect \(v\) to the \(r/2\) closest vertices counter-clockwise and \(r/2\) closest vertices clockwise.
+
+  \textit{Case 2: \(r\) is odd but \(n\) is even.} 
+\end{proof}
