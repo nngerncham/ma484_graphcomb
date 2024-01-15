@@ -1,0 +1,30 @@
+\begin{hwproblem}{1}{
+  Prove that if the numbers $1,2, \ldots, 12$ are randomly positioned around a 
+  circle, then some set of three consecutively positioned numbers must have a 
+  sum of at least 20 .
+  }
+
+  Assume to the contrary that, once positioned into a circle, there is no three
+  consecutive numbers with a sum of at least 20. Notice the following adjacency
+  constraints. These constraints are due to the fact that, regardless of the
+  third number, these numbers being adjacent to each other would already add up
+  to at least 20.
+  \begin{itemize}
+    \item 12 cannot be adjacent to 8, 9, 10, 11
+    \item 11 cannot be adjacent to 9, 10, 12
+    \item 10 cannot be adjacent to 11, 12
+    \item 9 cannot be adjacent to 11, 12
+    \item 8 cannot be adjacent to 12
+  \end{itemize}
+  So, we would need to place them apart from each other so that our
+  assumption holds. Notice also that, ignoring combinations, we have the
+  following surrounding constraint.
+  \begin{itemize}
+    \item 12 can only be surrounded by numbers 7 or lower
+    \item 11 can only be surrounded by numbers 8 or lower
+    \item 10 can only be surrounded by numbers 9 or lower
+    \item 9 can only be surrounded by numbers 10 or lower
+    \item 8 can only be surrounded by numbers 11 or lower
+    \item The rest of the numbers can be surrounded by any number
+  \end{itemize}
+\end{hwproblem}
