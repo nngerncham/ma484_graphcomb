@@ -20,7 +20,7 @@
 \usepackage{cancel}
 
 \usepackage{blkarray}
-\newcommand{\matindex}[1]{\mbox{\scriptsize#1}}% Matrix index
+\newcommand{\matindex}[1]{\mbox{\scriptsize#1}} % Matrix index
 
 % --- FONT STUFF ---
 % Has to be under math stuff for some reason :/
@@ -64,12 +64,3 @@
 \algrenewcommand\Output{\item[\algorithmicoutput]}
 \algrenewcommand\algorithmicrequire{\textbf{Require:}}
 \algrenewcommand\Require{\item[\algorithmicrequire]}
-
-% --- SELF-DEFINED ENVIRONMENTS ---
-\newenvironment{hwproblem}[2]{
-	\noindent\textbf{Problem #1.} #2
-
-	\begin{framed}
-}{
-	\end{framed}
-}
