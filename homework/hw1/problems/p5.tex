@@ -3,4 +3,13 @@
     degree in a (not necessary connected) graph $G$ then $G$ contains a $u-v$ 
     path.
   }
+  Assume that \(G\) is disconnected. Otherwise, there must already be a
+  \(u-v\) path by the definition of a connected graph. We will show that \(u,
+  v\) must belong in the same disconnected component. Assume to the contrary
+  that \(u, v\) belongs in the components \(H_1, H_2\), respectively
+  Since \(u\) and \(v\) are the only two vertices with odd degrees, we have 
+  that the sum of degrees of vertices in each subgraph would come out to be odd.
+  This is a contradiction since the sum of degrees of vertices in a graph must
+  be even. Thus, \(u, v\) must belong in the same connected component and there
+  is always a path between them.
 \end{hwproblem}

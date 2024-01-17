@@ -4,4 +4,16 @@
     that $G$ contains a cycle of length at least $\sqrt{k}$. Is this best 
     possible?
   }
+  Let \(c = |V(C)|\) where \(V(C) = \{v_1, v_2, ..., v_c\}\) are the 
+  vertices of \(G\) that shows up in \(C\). Also, let \(P\) refer to the path of
+  length \(k\) between two vertices of \(C\) where \(V(P) = \{v_i, p_1, p_2,
+  ..., p_{k-2}, v_j\}\) are its vertices and \(v_i, v_j \in V(C)\) that \(P\)
+  connects.
+
+  Claim that we can always form a cycle \(C'\) of length at least \(k\) in 
+  \(G\). 
+
+  Consequently, the sharpest lower bound for the length of cycle would be 
+  \(k\) instead of \(\sqrt{k}\) since we can always form a cycle that includes
+  \(P\) in it.
 \end{hwproblem}
