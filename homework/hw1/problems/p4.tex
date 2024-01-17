@@ -1,0 +1,57 @@
+\begin{hwproblem}{4}{
+    Let $G$ be a connected $r$-regular graph of even order $n$ such that 
+    $\bar{G}$ is also connected. Show that
+    \begin{enumerate}[label=(\alph*)]
+      \item either $G$ or $\bar{G}$ is Eulerian.
+      \item either $G$ or $\bar{G}$ is Hamiltonian.
+    \end{enumerate}
+  }
+  We will assume that \(G\) is a simple graph to prove both parts.
+  Otherwise, it would not have a complement graph \(\overline{G}\).
+
+  First, we will show that either \(G\) or \(\overline{G}\) is Eulerian. Namely,
+  we will show that every vertex in either \(G\) or \(\overline{G}\) must have
+  an even degree. Recall that for integers \(r, n\) such that \(0 \leq r \leq
+  n-1\), if there is an \(r\)-regular graph of order \(n\), then at least one of
+  \(r\) or \(n\) is even. Notice that \(0 \leq r \leq n-1\) is already satisfied
+  since a vertex in any simple graph cannot have more than \(n-1\) edges.
+  If \(r\) is even, then we are done. Hence, \(G\) is connected (by
+  assumption) and every vertex in \(G\) has an even degree. Thus, we have that
+  \(G\) is Eulerian.
+
+  Otherwise, \(r\) is odd and \(n\) is even. Observe that 
+  \(\overline{G}\) is an \((n-r-1)\)-regular graph since any vertex can have a
+  degree of up to \(n-1\) and \(r\) is already in \(G\), leaving \(n-r-1\) left
+  for \(\overline{G}\). Notice also that \(n-r-1\) is even since its even minus
+  odd minus odd. Hence, \(\overline{G}\) is connected (by assumption) and 
+  every vertex in \(\overline{G}\) has an even degree. Thus, we have that
+  \(\overline{G}\) is Eulerian. Therefore, we can conclude that if a connected
+  \(r\)-regular graph of even order \(n\) such that \(\overline{G}\) is also
+  connected, then either \(G\) or \(\overline{G}\) is Eulerian.
+
+  Now, we will show that either \(G\) or \(\overline{G}\) is Hamiltonian.
+  Recall that if \(G\) is an \(r\)-regular graph, then \(\overline{G}\) is an
+  \((n-r-1)\)-regular graph. If \(r \geq n/2\), then we are done and \(G\) is
+  a simple connected graph with \(\deg v \geq n/2\) for all \(v \in V(G)\). By
+  Dirac's Theorem, \(G\) is Hamiltonian.
+
+  Otherwise, consider the following.
+  Since \(n\) is even, \(n/2\) is an integer. Hence, we claim that 
+  \[ r < \frac{n}{2} \iff r \leq \frac{n}{2} - 1 \]
+  To show this, we can denote \(n = 2n_0\) since \(n\) even. It follows that 
+  \[ r < \frac{n}{2} = n_0 \iff r \leq \frac{n}{2} - 1 = n_0 - 1 \]
+  since \(r, n, n_0 \in \mathbb{Z}\). Consequently, we have the following
+  \[
+    \begin{aligned}
+      (n-r-1) + (n-r-1) &= 2n - 2(r-1) \\ 
+                        &= n + \left[n - 2(r-1)\right] \\ 
+                        &\geq n + (n - n) = n \\
+    \end{aligned}
+  \]
+  Hence, we have that \(\overline{G}\) is a simple connected graph with 
+  \((n-r-1) + (n-r-1) = \deg v + \deg u \geq n\) for every \(u, v \in 
+  V(\overline{G})\). By Ore's Theorem, \(G\) is Hamiltonian. Therefore, we
+  can conclude that if a connected \(r\)-regular graph of even order \(n\) such
+  that \(\overline{G}\) is also connected, then either \(G\) or \(\overline{G}\)
+  is Hamiltonian.
+\end{hwproblem}

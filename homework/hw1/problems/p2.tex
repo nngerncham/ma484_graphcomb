@@ -1,0 +1,14 @@
+\begin{hwproblem}{2}{
+    Let $G$ be a graph (not a multigraph). Show that at least two of its 
+    vertices must have the same degree.
+  }
+  [Source of hint \cite{p2-1}] The possible degrees of a graph are \(\{0, 1,
+  \ldots, n-1\}\). However, we cannot have graphs where there are vertices with
+  0 degrees and \(n-1\) degrees in the same simple graph since having a degree
+  of \(n-1\) means that that vertex is adjacent to every vertex in the graph.
+  Thus, the degrees of the vertices of \(G\) must either belong to \(\{0, 1, 
+  \ldots, n-2\}\) or \(\{1, 2, \ldots, n-1\}\). Notice that, in both cases,
+  there are \(n-1\) possible degrees while we have \(n\) vertices. Therefore, by
+  the Pigeonhole Principle, we can conclude that there are at least two vertices
+  that have the same degree.
+\end{hwproblem}
