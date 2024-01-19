@@ -1,0 +1,30 @@
+\begin{nexample}
+  What is the smallest number of edges that will ensure that a simple graph on
+  10 vertices is Hamiltonian.
+\end{nexample}
+
+\subsection{Traveling Salesman Problem (TSP)}
+
+TSP is a question asking, given \(D\) cities, is there a Hamiltonian Cycle 
+that visits all \(n\) cities (vertices) then returns to its starting point
+and has total length \(\leq D\). TSP is also an example of an NP-complete 
+problem. That is, if such a tour exists, then we are able to verify this within
+polynomial time.
+
+The naive solution for \(n\) cities is to go through the \(n!\) different
+possible paths and look for the shortest one. \(n!\) can be approximated as
+follows using Stirling's Formula.
+\[ n! \approx \left(\frac{n}{e}\right)^n \cdot \sqrt{2 \pi n} \]
+Asymptotically, this search would take \textit{super-exponential} time:
+\(\mathcal{O}(n^n)\). Similarly, searching for a Hamiltonian Cycle on a simple 
+graph can be stated as a TSP problem. As such, they would have the same 
+running time.
+\textbf{not} Hamiltonian 
+
+On the other hand, determining if there exists an Euler Circuit in a graph is a
+very simple problem since it only requires linear time to check if the degree of
+every vertex is even or not. Another method of determining this is to check if
+the graph has a bridge or not. An analogous version of this condition is the cut
+vertex---a vertex that disconnects the graph once removed. If a graph has a cut
+vertex, then the graph may be Eulerian. However, said graph cannot be
+Hamiltonian.

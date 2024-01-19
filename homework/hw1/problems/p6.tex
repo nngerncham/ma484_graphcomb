@@ -4,16 +4,73 @@
     that $G$ contains a cycle of length at least $\sqrt{k}$. Is this best 
     possible?
   }
-  Let \(c = |V(C)|\) where \(V(C) = \{v_1, v_2, ..., v_c\}\) are the 
-  vertices of \(G\) that shows up in \(C\). Also, let \(P\) refer to the path of
-  length \(k\) between two vertices of \(C\) where \(V(P) = \{v_i, p_1, p_2,
-  ..., p_{k-2}, v_j\}\) are its vertices and \(v_i, v_j \in V(C)\) that \(P\)
-  connects.
+  Let \(P\) denote the path of length \(k\) between two vertices of \(C\). That
+  is, suppose that \(C\) has length \(n\) and \(C = \{v_1, v_2, ..., v_n\}\),
+  then there are \(1 \leq i, j \leq n\) such that \(i \neq j\) and \(P =
+  \{v_i, p_1, p_2, ..., p_{k-2}, v_j\}\).
 
-  Claim that we can always form a cycle \(C'\) of length at least \(k\) in 
-  \(G\). 
+  Suppose that \(P\) intersects \(C\) at \(l\) different points including \(v_i,
+  v_j\). There are two cases and we will show them one at a time.
+  If \(l = 2\), then \(P\) only intersects \(C\) at its ends: \(v_i, v_j\).
+  Then, we can form a cycle \(C'\) as follows:
+  \[ C' = \{\underbrace{v_i, p_1, p_2, ..., p_{k-2}, v_{j}}_P, \underbrace{
+  v_{j+1}, ..., v_{i-1}}_\text{Part of \(C\) between \(v_i, v_j\)}, v_i \} \]
+  In this case, we will end up with a cycle \(C'\) of length at least \(k \geq
+  \sqrt{k}\) since \(k \geq 1\).
 
-  Consequently, the sharpest lower bound for the length of cycle would be 
-  \(k\) instead of \(\sqrt{k}\) since we can always form a cycle that includes
-  \(P\) in it.
+  Otherwise, we have \(P\) intersects \(C\) at \(l > 2\) vertices. We will 
+  collect this into a set denoted \(\Lambda\). Namely, let \(\Lambda
+  = \{\lambda_1=v_i, \lambda_2, ..., \lambda_l=v_j\} = V(P) \cap V(C)\). If 
+  \(l \geq \sqrt{k}\), then we are done and we can form the cycle from vertices 
+  in \(\Lambda\) and the points between vertices between them, either from \(C\)
+  or \(P\). That is, the cycle \(C'\) is defined as follows.
+  \[
+    C' = \{ \lambda_1 = v_i, \underbrace{v_{i+1}, ...}_\text{Part of \(C\)}, 
+          \lambda_2, \underbrace{p_{\alpha}, ...}_\text{Part of \(P\)}, \lambda_3,
+          ..., \lambda_l = v_j, ..., v_i=\lambda_1 \}
+  \]
+  Otherwise, \(l < \sqrt{k}\). Claim that in a path of length \(k\), if we
+  mark the ends of the path and some other vertices totalling \(l\) vertices 
+  in the path, then there exists a segment of the path between two adjacent 
+  markers (including the markers themselves) that is at least of length \(k/l\).
+  We will prove this later. Let the markers represent the vertices where \(P\)
+  intersects \(C\). Then, we can come up with the following inequality.
+  \[ l < \sqrt{k} \iff \frac{k}{l} > \frac{k}{\sqrt{k}} = \sqrt{k} \]
+  Then, we can form a cycle \(C'\) with length at least \(\sqrt k\) as follows.
+  Suppose that the segment that is at least \(\sqrt k\) in length are between
+  intersecting vertices \(\lambda_{i'}\) and \(\lambda_{j'}\).
+  \[ C' = \{\lambda_{i'}, \underbrace{p_{\alpha}, p_{\alpha+1}}_\text{Part of
+  \(P\)}, ..., \lambda_{j'}, \underbrace{v_{\beta}, v_{\beta+1}, ...}_\text{Part
+  of \(C\)}, \lambda_{i'}\} \]
+  Hence, we end up with a cycle \(C'\) of at least length \(\sqrt k\).
+  Therefore, we can conclude that if a graph \(G\) containing a cycle \(C\) and a
+  path \(P\) of length at least \(k\) between two vertices of \(C\), then \(G\)
+  contains a cycle of at least length \(\sqrt k\).
+
+  Finally, the sharpest bound
+
+  \begin{proof}[Proof of Claim]
+    Consider the path \(P = \{u_1, u_2, ..., u_k\}\). Then, we denote the
+    \(i\)-th marked vertex in \(P\) as \(\lambda_i\). Define a \textit{segment
+    starting at marked vertex \(\lambda_i\)}, denoted \(S(\lambda_i)\),
+    to be the path between \(\lambda_{i}\) and \(\lambda_{i+1}\) for some
+    \(i\). Namely, a segment starting at the marked vertex \(\lambda_i\) would
+    be \(\{\lambda_i, u_{\alpha}, u_{\alpha+1}, ..., \lambda_{i+1}\}\).
+    Notice that if we sum the number of vertices of every segment, we would have
+    the following.
+    \[ \sum_{i=1}^{l-1} S(\lambda_i) = |V(P)| + (l - 2) = k+l-2 \]
+    We get \(|V(P)|\) from the length of \(P\) and we get \((l-2)\) since we 
+    count every marked vertex twice except for the start and end.
+
+    Assume to the contrary that every segment between any pair of
+    adjacent markers have length \(< k/l\). Then, the sum of the number of
+    vertices in every segment would be
+    \[
+      \begin{aligned}
+        \sum_{i=1}^{l-1} S(\lambda_i) &< (l-1)\frac{k}{l} \\
+                                      &< k - \frac{1}{l} \neq k+l-2
+      \end{aligned}
+    \]
+    Therefore, there must be at least one segment with length at least \(k/l\).
+  \end{proof}
 \end{hwproblem}

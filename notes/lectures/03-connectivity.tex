@@ -183,14 +183,44 @@ similar type of graph: Hamiltonian Graphs.
   Graphs}\label{fig:hamiltonian-graphs-examples}
 \end{figure}
 
-\begin{theorem}[Ore, 1960]
+\begin{theorem}[Ore's Theorem, 1960]
   If \(G\) is a simple graph with \(n (\geq 3)\) vertices, and if 
   \[ \deg u + \deg v \geq n \]
   for each pair of non-adjacent vertices \(u\) and \(v\), then \(G\) is
   Hamiltonian.
 \end{theorem}
 
-\begin{corollary}[Dirac, 1952]
+\begin{proof}
+  Assume to the contrary that graph \(G\) satisfies \(\deg u +
+  \deg v \geq n\) for each non-adjacent pair of vertices \(u, v\) and that \(G\)
+  is non-Hamiltonian. That is, there is no cycle of length \(n\) in \(G\).
+
+  First, we can add extra edges to \(G\) such that \(G\) is \textit{only just}
+  non-Hamiltonian. That is, once the edge is added, the graph remains
+  non-Hamiltonian. Hence, we obtain a graph \(H\) such that any edge added to it
+  will create a Hamiltonian Cycle.
+
+  Next, since \(H\) is not a complete graph, let \(x, y \in V(H)\) be
+  non-adjacent. If we added an \((x, y)\) edge, then we form a Hamiltonian
+  Cycle. Hence, it follows that the \(x-y\) path is of length \(n-1\). Suppose
+  that the \(x-y\) path is \(\{v_1, v_2, ..., v_n\}\). 
+
+  We will show that we can create a Hamiltonian Cycle from the \(x-y\) path to
+  arrive at a contradiction. Claim that there is \(i\) such that \(3 \leq i \leq
+  n-i\) and \(v_i\) is adjacent to \(x\) and \(v_{i-1}\) is adjacent to \(y\).
+  Then, we can form a cycle \(C = \{x=v_1, v_2, ..., v_{i-1}, y=v_n, v_{n-1},
+  ..., v_i, x\}\). Thus, it suffices to show that our claim holds.
+
+  Let \(n_1 = \deg x\) and \(n_2 = \deg y\). By our initial assumption, we have
+  that \(n_1 + n_2 \geq n\). Let \(S\) be the set of indices \(i\)'s such that
+  \(v_i\) is adjacent to \(x\). That is, \(S = \{i \in \mathbb{Z} : \text{\(i\)
+  is adjacent to \(x\)}\}\). Then, let \(T = \{i-1 : i \in S\} \setminus
+  \{1\}\). It follows that \(|T| = n_1-1\). Notice that \(T\) must intersect
+  with \(N(y)\) since \((n_1-1)+n_2 \geq n-1\). Hence, there must be a \(x - u -
+  y\) path.
+\end{proof}
+
+\begin{corollary}[Dirac's Theorem, 1952]
   If \(G\) is a simple graph with \(n (\geq 3)\) vertices, and if \(\deg v \geq
   n/2\) for each vertex \(v \in V(G)\), then \(G\) is Hamiltonian.
 \end{corollary}
