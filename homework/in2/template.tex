@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\input{preamble.tex}
+\input{macros.tex}
+
+\title{\Huge{{In-class Problem 2}}
+	\\
+\Large\scshape{{Graph Theory and Combinatorics}}}
+\author{{Nawat Ngerncham}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  \item What is the smallest number of edges that will ensure that a simple graph on 
+    \(n\) vertices is Hamiltonian?
+    \sol{
+      The minimum number of edges that will ensure that a simple graph on
+      \(n\) vertices is Hamiltonian is (by Hint) 
+      \[ \binom{n-1}{2} + 2 \]
+
+      First, we will show that it is possible for a graph with \(n\) vertices
+      and \(\binom{n-1}{2} + 1\) edges to be non-Hamiltonian. First, let \(G =
+      K_{n-1}\) graph. Next, \(G\) would have \(\binom{n-1}{2}\) edges and
+      \(n-1\) graphs. Then, we add one more vertex, called \(v\), and connect 
+      it to any vertex in the \(K_{n-1}\) portion of the graph. This makes the
+      \(|E(G)| = \binom{n-1}{2}+1\) as desired. Notice that \(\deg v = 1\).
+      Hence, we cannot form a cycle that visits \(v\) since if you
+      \textit{enter} \(v\), then you would need to leave and visit the vertex
+      it comes from again. Hence, it is possible that a graph with
+      \(\binom{n-1}{2}+1\) vertex to be non-Hamiltonian.
+
+      Now, it suffices to show that any graph with \(\binom{n-1}{2}+2\) edges is
+      Hamiltonian.
+      Claim that for every non-adjacent vertices \(u, v\), we have
+      \begin{equation}\label{eqn:deg-cond}
+        \deg u + \deg v \geq n
+      \end{equation}
+      If this claim is true, then the proposition at the beginning of the
+      solution satisfies by Ore's Theorem.
+
+      Let \(G\) be a simple graph of order \(n\) and \(\binom{n-1}{2}+2\) edges.
+      Notice that the sum of degrees when there are \(\binom{n-1}{2}+2\) edges
+      is
+      \[
+        \begin{aligned}
+          2 \left[ \binom{n-1}{2}+2 \right] &= 2 \left[ \frac{(n-1)(n-2)}{2} + 2
+          \right] \\
+                                            &= (n-1)(n-2) + 4 \\
+                                            &= n^2 - 3n + 6
+        \end{aligned}
+      \]
+      by Euler's Handshaking Lemma.
+
+      Assume to the contrary that \(\deg v + \deg u < n\). Consider the 
+      subgraph \(H\) of \(G\) where \(H\) is \(G\) without \(u, v\).
+      It follows that \(H\) is a graph of order \(n-2\). We
+      can then bound the sum of degrees in \(H\) as follows. 
+      \[
+        n^2 - 3n + 6 - n < n^2 - 3n + 6 - (\deg v + \deg u) = \sum_{w \in V(H)}
+        \deg w
+      \]
+      Notice that the sum of degrees in a \(K_{n-2}\) graph would be 
+      \[
+        \begin{aligned}
+          \sum_{w \in V(K_{n-2})} \deg w
+            &= 2 \cdot \binom{n-2}{2} \\ 
+            &= 2 \left(\frac{(n-2)(n-3)}{2}\right) \\ 
+            &= (n-2)(n-3) \\ 
+            &= n^2 - 5n + 6
+        \end{aligned}
+      \]
+      Consider
+      \[
+        \begin{aligned}
+          \underbrace{n^2 - 3n + 6 - n}_{\min \sum_{w \in H} \deg w}
+            &<& \underbrace{n^2 - 3n + 6 - (\deg v + \deg u)}_\text{Exact
+            \(\sum_{w \in H} \deg w\)}
+            &\leq& \underbrace{n^2 - 5n + 6}_{\sum_{w \in K_{n-2}} \deg w} \\ 
+          -4n &<& -3n - (\deg v + \deg u) &\leq& - 5n
+        \end{aligned}
+      \]
+      However, this is impossible because \(-4n \not{<} -5n\) for any \(n > 0\).
+      This is a contradiction. Hence, it is impossible for any non-adjacent
+      vertices \(u, v \in V(G)\) to be such that \(\deg v + \deg u < n\).
+      Thus, every non-adjacent vertices \(u, v \in V(G)\) must be such that
+      \(\deg u + \deg v \geq n\). Therefore, any graph with \(\binom{n-1}{2} +
+      2\) edges must be Hamiltonian.
+    }
+\end{enumerate}
+
+% in case of needing citations
+% \bibliographystyle{plainurl}
+% \bibliography{refs}
+
+\end{document}
