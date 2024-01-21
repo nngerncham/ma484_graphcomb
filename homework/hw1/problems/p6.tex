@@ -47,9 +47,7 @@
   path \(P\) of length at least \(k\) between two vertices of \(C\), then \(G\)
   contains a cycle of at least length \(\sqrt k\).
 
-  Finally, the sharpest bound
-
-  \begin{proof}[Proof of Claim]
+  \begin{proof}[Proof of \(k/l\) Claim]
     Consider the path \(P = \{u_1, u_2, ..., u_k\}\). Then, we denote the
     \(i\)-th marked vertex in \(P\) as \(\lambda_i\). Define a \textit{segment
     starting at marked vertex \(\lambda_i\)}, denoted \(S(\lambda_i)\),
@@ -73,4 +71,12 @@
     \]
     Therefore, there must be at least one segment with length at least \(k/l\).
   \end{proof}
+
+  As for improving the bound, we can always use the reasoning above to obtain
+  the minimum bound of \(k/l\) where \(l\) is the number of intersections using
+  the reasoning above. However, this bound only works if we are willing count
+  the number of intersections.
+
+  If we want to only have \(k\) in our bound, then I don't know :/ Aj. and Bhum said
+  \(\sqrt{2k}\) and believe them though.
 \end{hwproblem}
