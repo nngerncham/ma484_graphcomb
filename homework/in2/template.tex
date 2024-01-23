@@ -54,15 +54,23 @@
       \]
       by Euler's Handshaking Lemma.
 
-      Assume to the contrary that \(\deg v + \deg u < n\). Consider the 
+      Assume to the contrary that there exists a pair of non-adjacent vertices
+      \(u, v\) such that \(\deg v + \deg u < n\). Namely, that it violates 
+      \ref{eqn:deg-cond}. Consider the 
       subgraph \(H\) of \(G\) where \(H\) is \(G\) without \(u, v\).
       It follows that \(H\) is a graph of order \(n-2\). We
-      can then bound the sum of degrees in \(H\) as follows. 
+      can then bound the sum of degrees in \(H\) as follows. Namely, this is
+      computed by removing the edges incident to \(u\) or \(v\). 
       \[
-        n^2 - 3n + 6 - n < n^2 - 3n + 6 - (\deg v + \deg u) = \sum_{w \in V(H)}
-        \deg w
+        \begin{aligned}
+          n^2 - 3n + 6 - \underbrace{2n}_\text{Lower bound}
+            &< n^2 - 3n + 6 - \underbrace{2(\deg v + \deg u)}_\text{Actual
+            removed} = \sum_{w \in V(H)} \deg w \\ 
+          n^2 - 5n + 6 &< n^2 - 3n + 6 - 2(\deg v + \deg u)
+        \end{aligned}
       \]
-      Notice that the sum of degrees in a \(K_{n-2}\) graph would be 
+      Note that their neighborhoods are disjointed since they are non-adjacent.
+      Notice also that the sum of degrees in a \(K_{n-2}\) graph would be 
       \[
         \begin{aligned}
           \sum_{w \in V(K_{n-2})} \deg w
@@ -75,14 +83,15 @@
       Consider
       \[
         \begin{aligned}
-          \underbrace{n^2 - 3n + 6 - n}_{\min \sum_{w \in H} \deg w}
-            &<& \underbrace{n^2 - 3n + 6 - (\deg v + \deg u)}_\text{Exact
+          \underbrace{n^2 - 5n + 6}_{\min \sum_{w \in H} \deg w}
+            &<& \underbrace{n^2 - 3n + 6 - 2(\deg v + \deg u)}_\text{Exact
             \(\sum_{w \in H} \deg w\)}
             &\leq& \underbrace{n^2 - 5n + 6}_{\sum_{w \in K_{n-2}} \deg w} \\ 
-          -4n &<& -3n - (\deg v + \deg u) &\leq& - 5n
+          -5n &<& -3n - (\deg v + \deg u) &\leq& - 5n
         \end{aligned}
       \]
-      However, this is impossible because \(-4n \not{<} -5n\) for any \(n > 0\).
+      However, this is impossible because \(-5n \not{<} -5n\) for any \(n\) due
+      to the strict inequality.
       This is a contradiction. Hence, it is impossible for any non-adjacent
       vertices \(u, v \in V(G)\) to be such that \(\deg v + \deg u < n\).
       Thus, every non-adjacent vertices \(u, v \in V(G)\) must be such that
