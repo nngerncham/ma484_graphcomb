@@ -1,0 +1,44 @@
+\documentclass[answers]{exam}
+
+\input{preamble.tex}
+\input{macros.tex}
+
+% === NOTES PORTION ===
+% \begin{document}
+%
+% \frontmatter
+% \include{titlepage}
+%
+% \setcounter{tocdepth}{1}
+% \tableofcontents
+%
+% \mainmatter
+
+% === HOMEWORK PORTION ===
+\renewcommand{\questionlabel}{\textbf{Problem \thequestion.}}
+\renewcommand{\solutiontitle}{}
+
+\title{\Huge{{Homework 2}}
+	\\
+\Large\scshape{{Graph Theory and Combinatorics}}}
+\author{{Nawat Ngerncham}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{questions}
+  \input{problems/p1.tex}
+  \input{problems/p2.tex}
+  \input{problems/p3.tex}
+  \input{problems/p4.tex}
+  \input{problems/p5.tex}
+  \input{problems/p6.tex}
+\end{questions}
+
+% in case of needing citations
+\bibliographystyle{plainurl}
+\bibliography{refs}
+
+\end{document}

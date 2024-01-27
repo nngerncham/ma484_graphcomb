@@ -1,0 +1,28 @@
+\question
+  Find the number of spanning trees in $K_{2,1}, K_{2,2}, K_{2,3}, K_{2,4}$.
+  How many spanning trees has $K_{2, s}, s \geq 1$?
+
+  \begin{solution}
+    \begin{itemize}
+      \item For \(K_{2, 1}\), there is 1 spanning tree
+      \item For \(K_{2, 2}\), there are 4 spanning trees
+      \item For \(K_{2, 3}\), there are 12 spanning trees
+      \item For \(K_{2, 4}\), there are 32 spanning trees 
+    \end{itemize}
+
+    In the general case \(K_{2, s}\) for \(s \geq 1\), we have 
+    \[ \sum_{i=1}^s i \cdot \binom{s}{i} = 2^{s-1}s \]
+    where the closed form is obtained by SageMath (my beloved). Namely, this
+    summation is obtained as follows. 
+
+    Let us denote the vertices on the \textit{left side} of the bipartite
+    graph as \(a\) and \(b\). For each term of the summation---for some
+    value of \(i\) in the range specified---we first identify how many ways
+    we can connect \(a\) to \(i\) vertices on the \textit{right side} of the
+    graph. This is computed by \(\binom{s}{i}\). Then, we connect \(b\) to
+    the remaining vertices. To ensure that the graph is connected, we can 
+    connect \(b\) to any one of the \(i\) vertices in that is adjacent to
+    \(a\). Thus, we obtain the \(i \cdot \binom{s}{i}\) in each term. Then,
+    we simply sum all the possible number of vertices \(a\) can be adjacent
+    to: \(i = 1, 2, \ldots, s\).
+  \end{solution}

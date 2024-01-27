@@ -1,0 +1,21 @@
+\question
+  Prove that every tree with maximum degree $\Delta$ has at least $\Delta$ 
+  leaves (vertices of degree 1).
+
+  \begin{solution}
+    Claim that \(n_\Delta \geq 1\). Since the \(\Delta(G)\) refers to the
+    highest degree in \(G\), then there must be at least one vertex with degree
+    \(\Delta(G)\). Hence, we have that \(n_\Delta \geq 1\). Then, using the
+    result from the previous problem, we would have the following.
+    \[ 
+      \begin{aligned}
+        n_1 &= 2 + n_3 + 2n_4 + \cdots + (\Delta-2)n_\Delta \\ 
+            &\geq 2 + (\Delta-2)n_\Delta \\ 
+            &\geq 2 + (\Delta - 2) \cdot 1 \\ 
+            &= \Delta
+      \end{aligned}
+    \]
+    since \(n_i \geq 0\) for \(i = 3, 4, \ldots, \Delta-1\). Therefore, we can
+    conclude that every tree with maximum degree \(\Delta\) has at least
+    \(\Delta\) leaves.
+  \end{solution}
