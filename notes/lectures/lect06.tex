@@ -1,0 +1,46 @@
+\begin{theorem}[Cayley's Theorem, 1889]
+  There are \(n^{n-2}\) distinct labelled trees on \(n\) vertices.
+\end{theorem}
+
+\begin{proof}[Proof with Pr\"{u}fer's Code]
+  We will show that there is a bijection \(f : X \to Y\) where \(X\) is the set
+  labelled tree of \(n\) vertices and \(Y\) is the \(n-2\) tuples of numbers 1 
+  to \(n\). is the set of Prufer's codes. Namely, we will show that
+  \(f(X) \subseteq Y\). Then, we will show that \(f^{-1}(Y) \subseteq X\).
+
+  [Left as exercise]
+\end{proof}
+
+\chapter{Matching and Covering}
+
+In this chapter, the main question is as follows: Given a graph \(G\), how do we
+find the matching \(M\) with maximum size?
+
+\section{Core Definitions}
+
+\begin{definition}[Edge Independent]
+  A set \(F\) of edges in a graph is \textit{independent} if no two edges in
+  \(F\) are adjacent.
+\end{definition}
+
+\begin{definition}[Matching]
+  A \textit{matching} \(M\) of graph \(G\) is a subgraph of \(G\) such that
+  every edge shares no vertex with any other edge. That is, each vertex in
+  matching \(M\) has degree one.
+\end{definition}
+
+\begin{definition}[Complete/Perfect Matching]
+  A matching of a graph \(G\) is \textit{complete} if it contains all of \(G\)'s
+  vertices. Sometimes, this is also called a \textit{perfect} matching.
+\end{definition}
+
+\begin{remark}
+  If graph \(G\) has a matching \(M\) that contains all vertices in \(G\), we
+  called \(M\) a perfect/complete matching. That is, a matching of size \(n/2\).
+\end{remark}
+
+If you are in Computer Science, your goal here would be to come up with an
+algorithm to come up with the maximum size matching in \(G\) and then analyze
+its running time. On the other hand, if you are in Mathematics, your goal would
+be to find the condition for a perfect matching. Keep in mind that identifying
+the perfect/maximum matching is an NP problem so it is very difficult to solve. 

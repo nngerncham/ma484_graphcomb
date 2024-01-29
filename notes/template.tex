@@ -2,6 +2,9 @@
 
 \input{preamble.tex}
 \input{macros.tex}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
 
 \begin{document}
 
@@ -13,11 +16,13 @@
 
 \mainmatter
 
-\input{lectures/01-introduction}
-\input{lectures/02-eulerian-graphs}
-\input{lectures/03-connectivity}
-\input{lectures/04-hamiltonian}
-\input{lectures/05-trees}
+\input{lectures/lect01}
+\input{lectures/lect02}
+\input{lectures/lect03}
+\input{lectures/lect04}
+\input{lectures/lect05}
+\input{lectures/lect06}
+\input{lectures/lect07}
 
 \bibliographystyle{plainurl}
 \bibliography{refs}
