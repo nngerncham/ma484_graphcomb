@@ -3,7 +3,7 @@
   \[ |M| \leq |V(G)| \]
 \end{remark}
 
-\subsection{Matching in Bipartite Graph}
+\section{Matching in Bipartite Graph}
 
 \begin{definition}[Neighborhood]
   For a vertex \(v \in V(G)\), the \textit{neighborhood} of \(v\), denoted
@@ -69,29 +69,30 @@ and proven in Hall's Marriage Theorem.
 \end{remark}
 
 \begin{proof}[Alternate Inverse Direction Proof]
-  We will show this by induction on \(|A|\). Consider the base case when
-  \(|A| = 1\). Then, there is a matching of \(A\) by matching the vertex in
-  \(A\) to any vertex in \(B\).
+  % We will show this by induction on \(|A|\). Consider the base case when
+  % \(|A| = 1\). Then, there is a matching of \(A\) by matching the vertex in
+  % \(A\) to any vertex in \(B\).
 
-  Now, we will show the inductive case. Let \(|A| \geq 2\) and assume that 
-  the marriage condition implies that there is a matching of \(A\) when 
-  \(|A| = k\). We will now show that this holds when \(|A| = k+1\). There are
-  cases for us to consider: 
-  \begin{enumerate}[label=\textit{Case \arabic*.}]
-    \item If \(|N(S)| \geq |S| + 1\) for every non-empty set \(S \subsetneq A\).
-      Pick any edge \(e = (a, b) \in E(G)\) and consider the graph \(G' =
-      G-(a,b)\). Then, every non-empty set \(S \subseteq A \setminus \{a\}\)
-      satisfies \(|N_G(S)| \geq |N_G(S)| - 1 \geq |S|\). Thus, the marriage
-      condition still satisfies and by induction, \(G'\) contains a matching of
-      \(A \setminus \{a\}\). Together with the edge of \((a, b)\), this yields a
-      matching of \(A\) in \(G\).
-    \item Otherwise, there is \(A' \subsetneq A\) such that \(|N(A')| = |A'|\). 
-      Then, \(G' = A' \cup N(A')\) contains a matching of \(A'\) by the
-      induction hypothesis. On the otherhand, \(G-G'\) satisfies the marriage
-      condition as well. This is because if \(S \subseteq A \setminus A'\)
-      satisfies \(|N_{G-G'}(S)| < |S|\), we could have \(|N_G(S \cup A')| < |S
-      \cup A'|\) which contradicts the inductive hypothesis. So again
-  \end{enumerate}
+  % Now, we will show the inductive case. Let \(|A| \geq 2\) and assume that 
+  % the marriage condition implies that there is a matching of \(A\) when 
+  % \(|A| = k\). We will now show that this holds when \(|A| = k+1\). There are
+  % cases for us to consider: 
+  % \begin{enumerate}[label=\textit{Case \arabic*.}]
+  %   \item If \(|N(S)| \geq |S| + 1\) for every non-empty set \(S \subsetneq A\).
+  %     Pick any edge \(e = (a, b) \in E(G)\) and consider the graph \(G' =
+  %     G-(a,b)\). Then, every non-empty set \(S \subseteq A \setminus \{a\}\)
+  %     satisfies \(|N_G(S)| \geq |N_G(S)| - 1 \geq |S|\). Thus, the marriage
+  %     condition still satisfies and by induction, \(G'\) contains a matching of
+  %     \(A \setminus \{a\}\). Together with the edge of \((a, b)\), this yields a
+  %     matching of \(A\) in \(G\).
+  %   \item Otherwise, there is \(A' \subsetneq A\) such that \(|N(A')| = |A'|\). 
+  %     Then, \(G' = A' \cup N(A')\) contains a matching of \(A'\) by the
+  %     induction hypothesis. On the otherhand, \(G-G'\) satisfies the marriage
+  %     condition as well. This is because if \(S \subseteq A \setminus A'\)
+  %     satisfies \(|N_{G-G'}(S)| < |S|\), we could have \(|N_G(S \cup A')| < |S
+  %     \cup A'|\) which contradicts the inductive hypothesis. So again
+  % \end{enumerate}
+  [Requires rewrite]
 \end{proof}
 
 \begin{theorem}[The Marriage Theorem]
