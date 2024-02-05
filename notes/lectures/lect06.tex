@@ -2,14 +2,74 @@
   There are \(n^{n-2}\) distinct labelled trees on \(n\) vertices.
 \end{theorem}
 
-\begin{proof}[Proof with Pr\"{u}fer's Code]
-  We will show that there is a bijection \(f : X \to Y\) where \(X\) is the set
-  labelled tree of \(n\) vertices and \(Y\) is the \(n-2\) tuples of numbers 1 
-  to \(n\). is the set of Prufer's codes. Namely, we will show that
-  \(f(X) \subseteq Y\). Then, we will show that \(f^{-1}(Y) \subseteq X\).
+The proof of this will be omitted due to Nawat not understanding
+it. It might show up one day in the future.
 
-  [Left as exercise]
-\end{proof}
+% \begin{proof}[Proof with Pr\"{u}fer's Code]
+%   We will show that there is a bijection \(f : X \to Y\) where \(X\) is the set
+%   labelled tree of \(n\) vertices and \(Y\) is the \(n-2\) tuples of numbers 1 
+%   to \(n\). is the set of Prufer's codes. Namely, we will show that
+%   \(f(X) \subseteq Y\). Then, we will show that \(f^{-1}(Y) \subseteq X\).
+
+%   [Left as exercise]
+% \end{proof}
+
+\section{Pr\"ufer Sequences}
+
+Following are the SageMath code snippets for encoding and
+decoding Pr\"ufer Sequences.
+
+\begin{listing}[ht]
+\begin{minted}{python}
+def tree_to_prufer(T: Graph) -> List[int]:
+    tmp = Graph()
+    tmp.adj = T.adj.copy()
+    T = tmp
+
+    S = []
+    leaves = {v + 1 for v in T.adj if T.degree(v + 1) == 1}
+    while T.n() > 2:
+        # gets the smallest leaf
+        l = min(leaves)
+        leaves.remove(l)
+
+        # add parent to sequence
+        [parent] = [v for v in T.N(l)]
+        S.append(parent)
+        T.remove_vertex(l)
+
+        # update collection of leaves
+        if T.degree(parent) == 1:
+            leaves.add(parent)
+
+    del T
+    return S
+\end{minted}
+\caption{Encoding a tree into a Pr\"ufer Sequence}
+\end{listing}
+
+\begin{listing}[ht]
+\begin{minted}{python}
+def prufer_to_graph(S: List[int]) -> Graph:
+    n = len(S) + 2
+    L = [i + 1 for i in range(n)]
+
+    T = Graph()
+    for i, s in enumerate(S):
+        # gets minimum vertex not in S and connect it to the graph
+        v = min([l for l in L if l not in S[i:]])
+        T.add_edge(v, s)
+        L.remove(v)
+
+    # adds the last edge/vertex
+    assert len(L) == 2
+    u, v = [l for l in L]
+    T.add_edge(u, v)
+
+    return T  
+\end{minted}
+\caption{Decoding a Pr\"ufer Sequence into a tree}
+\end{listing}
 
 \chapter{Matching and Covering}
 
