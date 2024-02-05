@@ -1,0 +1,94 @@
+\documentclass[answers]{exam}
+
+\input{preamble.tex}
+\input{macros.tex}
+
+% === NOTES PORTION ===
+% \begin{document}
+%
+% \frontmatter
+% \include{titlepage}
+%
+% \setcounter{tocdepth}{1}
+% \tableofcontents
+%
+% \mainmatter
+
+% Something something
+
+% in case of needing citations
+% \bibliographystyle{plainurl}
+% \bibliography{refs}
+
+% \end{document}
+
+% === HOMEWORK PORTION ===
+\renewcommand{\questionlabel}{\textbf{Problem \thequestion.}}
+\renewcommand{\solutiontitle}{}
+
+\title{\Huge{{In-class Problem 3}}
+	\\
+\Large\scshape{{Graph Theory and Combinatorics}}}
+\author{{Nawat Ngerncham}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{questions}
+  \question 
+    Take a regular deck of 52 playing cards and randomly deal them into 13 
+    piles of 4 cards each. Show that, there exists a way to pull out one card
+    from each pile so that you have a card from every rank (ace, 2, ..., king).
+
+    \begin{solution}
+      First, let us model this problem into a graph problem. Let us construct a
+      bipartite graph \(G\) whose vertices are split into sets \(A\) and \(B\)
+      as follows.
+      \begin{enumerate}
+        \item Let each vertex in \(A\) represent a rank of cards. Namely, we
+          have \(A = \{a, 2, 3, ..., 10, j, q, k\}\) where \(a\) is the Ace 
+          and \(j, q, k\) are ranks Jack, Queen, and King, respectively.
+        \item Let each vertex of \(B\) represent each pile of cards. Namely, 
+          we have \(B = \{P_i : i = 1, 2, ..., 13\}\). 
+        \item Add edges such that for each vertex \(v\) that represents rank 
+          \(r\), \(v\) is adjacent to \(P_i\)'s in \(B\) if at least one card of
+          rank \(r\) is present in \(P_i\). 
+      \end{enumerate}
+
+      We claim that for any \(S \subseteq A\), we have that
+      \[ |N(S)| \geq |S| \]
+      Then, by Hall's Marriage Theorem, there is a matching of \(A\) in \(G\).
+      This means that each rank (vertex in \(A\)) will be matched to a pile
+      (vertex in \(B\)) that it can be drawn from. Thus, we would have that
+      there always exists a way to pull out one card from each pile such that we
+      have a card from every rank. We are now only left with proving our claim.
+
+      Assume to the contrary that there exists \(S \subseteq A\) such that the
+      \(|S| > |N(S)|\). Let \(s = |S|\) and \(k = |N(S)|\). Since each pile of
+      cards has 4 cards, the total number of cards that show up in any
+      pile of \(N(S)\) would be \(4k\). That is, 
+      \[ \sum_{P_j \in N(S)} |P_j| = 4k \]
+
+      Recall that in a regular deck of cards, each rank has 4 cards, one from
+      each suit (Clubs, Spades, Hearts, Diamonds). So, the number of cards that
+      has a rank that shows up in \(S\) is \(4s\). Since \(k < s\), it follows
+      that \(4k < 4s\). That is, the total number of cards that show up in the
+      piles in \(N(S)\) would be less than the number of cards that have the 
+      ranks in \(S\). Since \(N(S)\) is made up of piles of cards that have any 
+      rank in \(S\), this would mean that some cards are lost. This is a
+      contradiction since we are splitting cards without throwing any away. 
+
+      Therefore, we can conclude that if we were to 
+      take a regular deck of 52 playing cards and randomly deal them into 13 
+      piles of 4 cards each, then there exists a way to pull out one card
+      from each pile so that we have a card from every rank.
+    \end{solution}
+\end{questions}
+
+% in case of needing citations
+% \bibliographystyle{plainurl}
+% \bibliography{refs}
+
+\end{document}
