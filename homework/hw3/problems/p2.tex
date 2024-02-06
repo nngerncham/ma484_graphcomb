@@ -4,5 +4,24 @@ if every two vertices of \(U\) have distinct degrees in \(G\),
 then \(G\) contains a perfect matching.
 
 \begin{solution}
-  
+  We will show that the marriage condition satisfies. Let \(S
+  \subseteq U\). We will show that \(|S| \leq |N(S)|\). Suppose
+  that \(|S| = l\). We claim that \(\max_{s \in S} \deg s \geq 
+  l\). Then, we would have that 
+  \[
+    |N(S)| \geq \max_{s \in S} \deg s \geq l = |S|
+  \]
+  Since the marriage condition satisfies, we have that there
+  exists a perfect matching in \(G\) by The Marriage Theorem.
+  Hence, what is left is for us to prove our claim.
+
+  First, notice that the possible degrees of vertices in \(U\),
+  and consequently vertices in \(S\), are \(\{1, 2, \ldots, l,
+  \ldots, k-1\}\). Assume to the contrary that \(\max_{s \in S}
+  \deg s < l\). Then, the degrees in \(S\) would be \(1, 2,
+  \ldots, l-1\). Since there are \(l\) vertices in \(S\), there
+  must be at least two vertices with the same degree. This is a
+  contradiction since every vertex of \(U\) has a distinct
+  degree. Therefore, it must be that the maximum degree in \(S\)
+  must be at least \(l\).
 \end{solution}
