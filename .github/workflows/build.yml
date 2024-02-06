@@ -29,9 +29,8 @@ jobs:
         with:
           working_directory: notes/
           root_file: template.tex
-          args: |
-            -shell-escape
-            -pdf
+          latex_shell_escape: true
+          latexmk_use_xelatex: true
 
       - name: Create Release
         id: create_release
