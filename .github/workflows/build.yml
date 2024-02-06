@@ -16,11 +16,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install Pygments
+        run: pip install Pygments
+
       - name: Setup LaTeX
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           working_directory: notes/
           root_file: template.tex
+          args: |
+            -shell-escape
 
       - name: Create Release
         id: create_release
