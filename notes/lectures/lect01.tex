@@ -111,11 +111,8 @@ subgraph called the \textit{induced subgragh}.
 \begin{definition}[Induced Subgraph]
   \(H\) is an \textit{induced subgraph} of \(G\) if \(V(H) \subseteq V(G)\) and \(E(H)\)
   is the set of edges in \(E(G)\) with both vertices in \(V(H)\). 
-
-  Intuitively, we pick vertices from \(V(G)\) and we only pick edges from
-  \(E(G)\) such that every edge that shows up in \(E(H)\) are associated with
-  only vertices in \(V(H)\). Note that edges in \(E(H)\) does not have to
-  connect every component of \(H\).
+  Intuitively, \(E(H)\) are edges we picked from \(E(G)\) and \(V(H)\) is every
+  vertex incident to any edge in \(E(H)\).
 \end{definition}
 
 \begin{figure}[ht]

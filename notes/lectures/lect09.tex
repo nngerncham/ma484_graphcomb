@@ -1,0 +1,67 @@
+  Now, we will show \ref{eqn:gallai-proof-2}. Let \(X\) be the minimum edge 
+  cover of \(G\). Then, we have \(|X|=\beta'(G)=l\). Let \(F = G[X]\) or a 
+  subgraph induced by \(X\). Notice that \(F\) has no
+  trail of length 3. Otherwise, there must be a middle edge \(e\) but \(X
+  \setminus \{e\}\) would still be an edge cover of \(G\), creating a
+  contradiction. Hence, \(F\) contains no cycle and no paths of length 3 or
+  grater. This implies that every component of \(F\) is a star. 
+
+  Notice that each component with \(n_i\) vertices has \(n_i - 1\) edges. So,
+  if \(F\) has \(c\) components, then it has \(n-c\) edges and all of these must
+  be in the edge cover. Hence, we have that
+  \[
+  \begin{aligned}
+    l \geq n-c \iff c \geq n-l
+  \end{aligned}
+  \]
+  To find \(\alpha'(G)\), we can pick one edge from each component of \(F\).
+  Then, it follows that 
+  \[ \alpha'(G) = c \geq n-l \]
+  This implies that 
+  \[ \alpha'(G) + \beta'(G) \geq (n-l) + l = n \] 
+\end{proof}
+
+\begin{theorem}
+  For every graph \(G\) of order \(n\) containing no isolated vertices, we have
+  \[ \alpha(G) + \beta(G) = n \]
+\end{theorem}
+
+\begin{proof}
+  The proof is similar to Gallai's Theorem and will be omitted.
+\end{proof}
+
+\begin{nexample}
+  Prove that if \(G\) is a graph of order \(n\) with maximum degree \(\Delta\)
+  and has no isolated vertices, then 
+  \[ \beta(G) \geq \frac{n}{\Delta + 1} \]
+
+  \begin{proof}
+    Let \(G\) be a graph of order \(n\) and suppose that \(G\) has \(k\)
+    components. We make the following observations:
+    \begin{enumerate}
+      \item \(|E(G)| \leq \beta(G) \cdot \Delta\). This is because
+        \(\beta(G)\) gives the number of vertices needed to cover every edge,
+        and each vertex has at most \(\Delta\) edges incident to it.
+      \item \(n-k \leq |E(G)|\). Notice that \(n-k\) is the minimum number of
+        edges required for a graph with \(k\) components to have no isolated
+        vertices.
+      \item \(k \leq \beta(G)\). Otherwise, there would be isolated vertices
+        with violates our assumption.
+    \end{enumerate}
+    Combining all of these together, we have that
+    \[ n-\beta(G) \leq n-k \leq |E(G)| \leq \beta(G) \cdot \Delta \]
+    Finally, we have that 
+    \[
+    \begin{aligned}
+      n - \beta(G) &\leq \beta(G) \cdot \Delta \\ 
+      n &\leq \beta(G) (\Delta + 1) \\ 
+      \frac{n}{\Delta + 1} &\leq \beta(G)
+    \end{aligned}
+    \]
+    which is the inequality we wanted to show.
+  \end{proof}
+\end{nexample}
+
+\begin{remark}
+  The bound in the example is weak when \(G\) has many edges. 
+\end{remark}
