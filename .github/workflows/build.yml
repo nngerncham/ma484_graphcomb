@@ -31,8 +31,7 @@ jobs:
           root_file: template.tex
           args: |
             -shell-escape
-            -xelatex
-            -file-line-error
+            -pdf
 
       - name: Create Release
         id: create_release
