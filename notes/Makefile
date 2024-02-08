@@ -1,5 +1,5 @@
 all:
-	latexmk -pdf template.tex -shell-escape
+	latexmk -pdf main.tex -shell-escape
 
 clean:
 	latexmk -c

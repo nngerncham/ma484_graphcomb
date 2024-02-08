@@ -3,5 +3,44 @@
 (G) \leq 4\).
 
 \begin{solution}
-  
+  We will show that for every pair of distinct vertices \(u, v\),
+  \(d(u, v) \leq 4\). Let \(x\) be the vertex of maximum degree.
+  We will show the different cases possible for which 
+  neighborhood \(u, v\) belongs to. Note that we will consider
+  these cases without loss of generality and assume that \(u\) is
+  the start of the path \(u \to v\).
+
+  \begin{enumerate}[label=\Roman*.]
+    \item If \(u \in N(v)\), then they are adjacent and
+      \(d(u, v) = 1\).
+    \item If 
+  \end{enumerate}
+  % Claim that for every \(v \in V(G)\), we have that \(d(v, x)
+  % \leq 2\). If this satisfies, then we can always route any two
+  % vertices through \(x\), achieving distances of at most
+  % \(2+2=4\).
+  % If \(v \in N(x)\), then we are done and \(d(v, x) = 1\).
+
+  % Otherwise, we would have that \(v \notin N(x)\).
+  % % Notice that \(\deg v + \deg x < n\).
+  % For simplicity's sake, we say that any vertex is adjacent to
+  % itself even though there is no edge to itself. 
+  % Recall that \(\deg x = \Delta\). Then, there are \(n - (\Delta
+  % + 1)\) vertices not adjacent to \(x\) where \(\Delta\) is every
+  % neighbor of \(x\) and 1 is \(x\) itself. Consider the
+  % following. Since \(\Delta + \delta \geq n-2\), it follows that
+  % \(\Delta \geq n - \delta - 2\). Then, the number of vertices
+  % not adjacent to \(x\) is
+  \[
+  \begin{aligned}
+    % n - (\Delta + 1) 
+    %   &\geq n - (n - \delta - 2 + 1) \\
+    %   &= \delta + 1
+    \delta \geq n - \Delta - 2
+  \end{aligned}
+  \]
+
+  Therefore, we can conclude that for any connected graph \(G\)
+  of order \(n\) where \(\Delta(G) + \delta(G) \geq n-2\),
+  \(\diam(G) \leq 4\) satisfies. 
 \end{solution}
