@@ -4,43 +4,122 @@
 
 \begin{solution}
   We will show that for every pair of distinct vertices \(u, v\),
-  \(d(u, v) \leq 4\). Let \(x\) be the vertex of maximum degree.
-  We will show the different cases possible for which 
-  neighborhood \(u, v\) belongs to. Note that we will consider
-  these cases without loss of generality and assume that \(u\) is
-  the start of the path \(u \to v\).
+  \(d(u, v) \leq 4\) in cases. Let \(x\) be the vertex of maximum degree.
+  Without loss of generality, we assume that \(u \neq x \neq v\). Otherwise, 
+  any path that goes through \(x\) will be cut short, making the distance
+  shorter. 
 
-  \begin{enumerate}[label=\Roman*.]
-    \item If \(u \in N(v)\), then they are adjacent and
-      \(d(u, v) = 1\).
-    \item If 
+  \begin{enumerate}
+    \item \(u, v\) are adjacent. Then, we would have that \(d(u, v) = 1\).
+
+    \item Both \(u, v \in N(x)\) or \(N(u) \cap N(v) \neq \emptyset\).
+      Then, we can make path \(u-x-v\) or \(u-w-v\) for some \(w \in
+      N(u) \cap N(v)\), respectively. This results in \(d(u, v) = 2\).
+
+    \item \(N(u) \cap N(x) = \emptyset\). We will have two subcases for this.
+      \begin{enumerate}
+        \item If \(u \notin N(x)\), then we claim that either \(v
+          \in N(u)\) or \(v \in N(x)\). Since \(\Delta + \delta \geq
+          n-2\), we also have that \(\deg u + \deg x \geq n-2\). Furthermore, since
+          \(u, v\)'s neighborhoods are disjoint, it follows that
+          \[
+          \begin{aligned}
+            \left|\{u\} \cup N(u) \cup \{x\} \cup N(x)\right|
+              &= 1 + \deg u + 1 + \deg x \\
+              &\geq 1+1+n-2 \\
+              &= n
+          \end{aligned}
+          \]
+          We can see that \(u\), \(u\)'s neighbors, \(x\), and \(x\)'s neighbors
+          make up every vertex in the graph. Thus, \(v\) must
+          belong to either neighborhood. Since we already considered the case that
+          \(v \in N(u)\), we will show the case that \(v \in N(x)\).
+
+          We claim that there
+          must be vertices \(w \in N(u)\) and \(y \in N(x)\) such that \(w, y\) are
+          adjacent. If there aren't, then the graph would
+          be disconnected, contradicting our assumption. Thus, we can
+          create a path \(u - w - y - x - v\). Hence, we would have that \(d(u, v) =
+          4\).
+        \item Otherwise, \(u \in N(x)\). Then, we have
+          \[
+            \begin{aligned}
+              \left|\{u\} \cup N(u) \cup \{x\} \cup N(x)\right|
+                &= 1 + \deg u + \deg x \\
+                &\geq 1+n-2 \\
+                &= n-1
+            \end{aligned}
+          \]
+          Let \(s = \left|\{u\} \cup N(u) \cup \{x\} \cup N(x)\right|\). If \(s =
+          n\), this forces \(v\) to be in either neighborhood.
+          Then, we either have \(d(u, v) = 1\) when \(v \in N(u)\) or \(d(u, v)
+          = 2\) when \(v \in N(x)\) through the path \(u-x-v\).
+          Similarly, if \(s=n-1\) with \(v \in N(u)\) or \(N(x)\), then we would
+          have the same results.
+
+          Otherwise, \(s=n-1\) and \(v \notin N(u)\) nor \(N(x)\). So, \(v\)
+          would be the only vertex not in \(\{u\} \cup N(u) \cup \{x\} \cup N(x)\).
+          Then, there must be \(w \in N(v)\) such that \(w \in N(u)\) or
+          \(N(x)\) as well. Otherwise, the graph would be
+          disconnected. So, we would have that \(d(u, v) = 2\) when
+          \(w \in N(u)\) through path \(u-w-v\) and
+          \(d(u, v) = 3\) when \(w \in N(x)\) through path \(u-x-w-v\).
+      \end{enumerate}
+
+    \item For this final case, we are left with when
+      \begin{itemize}
+        \item \(u, v\) are not adjacent (opposite of case 1),
+        \item both \(u, v \notin N(x)\) and \(N(u) \cap N(v) = \emptyset\)
+          (opposite of case 2), and
+        \item \(N(u) \cap N(x) \neq \emptyset\) (opposite of case 3).
+      \end{itemize}
+      We will have two subcases for this (I know it's already a lot but please
+      bear with me).
+
+      \begin{enumerate}
+        \item If \(u \notin N(x)\), we claim that \(N(v) \cap
+          N(x) \neq \emptyset\) as well. Consequently, we can construct the
+          path \(u - w - x - y - v\) where \(w \in N(u) \cap N(x)\) and \(y \in N(x)
+          \cap N(v)\). It then follows that \(d(u, v) = 4\).
+          Assume to the contrary that \(N(v) \cap N(x) = \emptyset\).
+          Then, we would have that \(\deg v + \deg x \geq \delta + \Delta \geq
+          n-2\). Notice that
+          \[
+            \begin{aligned}
+              \left|\{v\} \cup N(v) \cup \{x\} \cup N(x)\right|
+                &= 1 + \deg u + 1 + \deg x \\
+                &\geq 1 + 1 + n-2 \\
+                &= n
+            \end{aligned}
+          \]
+          Again, we can see that \(v\), its neighbors, \(x\), and its neighbors
+          make up every vertex of the graph. Then, we would have that \(u\) must
+          belong to either neighborhood as previously shown. This is a
+          contradiction since we assume that \(u \notin N(v)\) and \(u \notin
+          N(x)\). Thus, \(N(v) \cap N(x) \neq \emptyset\).
+
+        \item Otherwise, \(u \in N(x)\), making \(d(u, x) = 1\).
+          Then, we just need to show that \(d(v,
+          x) \leq 3\) and we would end up with \(d(u, v) \leq 4\).
+
+          If \(N(v)\) and \(N(x)\) are disjoint, then, as shown multiple times
+          previously, \(\{v\} \cup N(v) \cup \{x\} \cup N(x)\) would cover every
+          vertex of the graph. Consequently, there must be \(w \in N(v)\) and
+          \(y \in N(x)\) that are adjacent to each other. So, there must be path
+          of length 3: \(v-w-y-x\). Hence, \(d(x, v) = 3\) and \(d(u, v) = 1 +
+          d(x, v) = 4\).
+
+          Otherwise, \(N(v) \cap N(x) \neq \emptyset\). Then, there must be \(w
+          \in N(v) \cap N(x)\) that allows us to construct the path \(x-w-v\).
+          Hence, \(d(x, v) = 2\) and \(d(u, v) = 1 + d(x, v) = 3\).
+      \end{enumerate}
   \end{enumerate}
-  % Claim that for every \(v \in V(G)\), we have that \(d(v, x)
-  % \leq 2\). If this satisfies, then we can always route any two
-  % vertices through \(x\), achieving distances of at most
-  % \(2+2=4\).
-  % If \(v \in N(x)\), then we are done and \(d(v, x) = 1\).
-
-  % Otherwise, we would have that \(v \notin N(x)\).
-  % % Notice that \(\deg v + \deg x < n\).
-  % For simplicity's sake, we say that any vertex is adjacent to
-  % itself even though there is no edge to itself. 
-  % Recall that \(\deg x = \Delta\). Then, there are \(n - (\Delta
-  % + 1)\) vertices not adjacent to \(x\) where \(\Delta\) is every
-  % neighbor of \(x\) and 1 is \(x\) itself. Consider the
-  % following. Since \(\Delta + \delta \geq n-2\), it follows that
-  % \(\Delta \geq n - \delta - 2\). Then, the number of vertices
-  % not adjacent to \(x\) is
-  \[
-  \begin{aligned}
-    % n - (\Delta + 1) 
-    %   &\geq n - (n - \delta - 2 + 1) \\
-    %   &= \delta + 1
-    \delta \geq n - \Delta - 2
-  \end{aligned}
-  \]
 
   Therefore, we can conclude that for any connected graph \(G\)
   of order \(n\) where \(\Delta(G) + \delta(G) \geq n-2\),
   \(\diam(G) \leq 4\) satisfies. 
+
+  I'm sorry if this solution has a lot of repeated cases/arguments. I got really
+  paranoid while writing this up so I felt like I needed to cover everything
+  even though a lot of them are repeated.
 \end{solution}
