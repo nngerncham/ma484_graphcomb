@@ -28,7 +28,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: notes/
-          root_file: template.tex
+          root_file: main.tex
           latexmk_shell_escape: true
           latexmk_use_xelatex: true
 
@@ -37,7 +37,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            notes/template.pdf
+            notes/main.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: release-assets
-          path: notes/template.pdf
+          path: notes/main.pdf
 
   release:
     needs: build
@@ -61,7 +61,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: /tmp/template.pdf
+          files: /tmp/main.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
