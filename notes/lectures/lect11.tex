@@ -1,0 +1,79 @@
+\begin{theorem}[Menger: Set Version]
+  Let \(G = (V, E)\) be a graph and let \(A, B \subseteq V\).
+  Then, the minimum number of vertices separating \(A\) and \(B\)
+  in \(G\) is equal to the maximum number of disjoint \(A-B\)
+  paths in \(G\).
+\end{theorem}
+
+\begin{proof}
+  We reduce this version to the original version by attaching
+  \(u\) to \(A\) and \(v\) to \(B\). Then, claim that the minimum
+  cut-vertex is the same as the maximum disjoint paths. Once we
+  remove \(u, v\), the claim of this set version still satsifies.
+\end{proof}
+
+\begin{theorem}[Menger's Theorem: Global]
+  \phantom{os}
+
+  \begin{enumerate}[label=(\roman*.)]
+    \item A nontrivial graph \(G\) is \(k\)-connected for some
+      integer \(k \geq 2\) if and only if for each pair \(u, v\)
+      of distinct vertices of \(G\) there are at least \(k\)
+      internally disjoint \(u-v\) paths in \(G\).
+    \item A nontrivial graph \(G\) is \(k\)-edge-connected if and
+      only if \(G\) contains \(k\) pairwise edge-disjoint \(u-v\)
+      paths for each pair \(u, v\) of distinct vertices of \(G\).
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  The difference of this version and the original version is that
+  \(u, v\) can be adjacent in the first case.
+\end{remark}
+
+\begin{corollary}
+  If \(G\) is a \(k\)-connected graph and \(u, v_1, v_2, \ldots,
+  v_k\) are \(k+1\) distinct vertices of \(G\), then there exist
+  internally disjoint \(u-v_i\) paths (\(1 \leq i \leq k\)) in
+  \(G\).
+\end{corollary}
+
+\begin{proof}
+  We construct a new graph \(H\) by adding a new vertex \(w\) and
+  joining \(w\) to the \(v_i\)'s. Since \(G\) is \(k\)-connected,
+  you need to remove at least \(k\) vertices to disconnect the 
+  graph. By Menger's Theorem: \textit{Global Edition}, there are
+  \(k\) internally disjoint \(u-w\) paths in \(H\). Thus, there
+  are \(k\) disjoint \(u-v_i\) paths in \(G\).
+\end{proof}
+
+\begin{theorem}
+  If \(G\) is a \(k\)-connected graph with \(k\geq2\), then every
+  \(k\) vertices of \(G\) lie on a common cycle of \(G\).
+\end{theorem}
+
+% \begin{proof}[Proof (Sketch)]
+%   The main idea of the proof is to assume that if there is a
+%   smaller cycle with \(l<k\) vertices, then you can always
+%   include more vertices into it to make it bigger.
+% \end{proof}
+
+\begin{proof}
+  Let \(G\) be a \(k\)-connected graph and let \(S = \{v_1, v_2,
+  \ldots, v_k\}\) be the set of vertices that does \textit{not}
+  lie on any common cycle in \(G\). Now, let \(C\)
+  be a cycle in \(G\) that contains as many elements in \(S\) as
+  possible. Suppose to contradict that \(|C| = l < k\).
+
+  Let \(v^* \in S\) be not in \(C\). Then, since \(G\) is
+  \(k\)-connected, we can apply Menger's Theorem:
+  \textit{Global Edition} and find \(k\) disjoint paths from
+  some \(v_i\)'s that are already included in \(C\). This is a
+  contradiction since we supposed that \(C\) already includes as
+  many vertices of \(S\) as possible.
+
+  Therefore, we can conclude that if \(G\) is a \(k\)-connected
+  graph with \(k \geq 2\), then every \(k\) vertices of \(G\)
+  must lie on a common cycle of \(G\).
+\end{proof}
+
