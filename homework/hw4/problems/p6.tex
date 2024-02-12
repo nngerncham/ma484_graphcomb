@@ -1,6 +1,49 @@
 \question Show that, if $G$ is an $n$-vertex graph in which 
 \[
   \deg(x)+\deg(y) \geq n-1 \quad
-  \text{for all nonadjacent $x, y \in V(G)$,} 
+  \text{for all non-adjacent $x, y \in V(G)$,} 
 \]
 then $\lambda(G)=\delta(G)$.
+
+\begin{solution}
+  Recall that if \(G\) is a graph of order \(n\) such
+  that \(\deg x + \deg y \geq n-1\) for every non-adjacent vertices \(x, y\),
+  then \(G\) is connected and \(\diam(G) \leq 2\).
+  % We also already know that in every graph \(G\), we have that \(\lambda(G) 
+  % \leq \delta(G)\). Hence, it suffices to show that \(\lambda(G) \not{<} 
+  % \delta(G)\) to prove our claim.
+  % We will show this by case.
+  % \begin{enumerate}
+  %   \item If \(\diam(G) = 1\), then \(G\) must be complete since every any pair 
+  %     of distinct vertices has distance 1. Then, \(\lambda(G) = \lambda(K_n) =
+  %     n-1 = \delta(G)\) since every vertex has degree \(n-1\).
+  %   \item Otherwise, \(\diam(G) = 2\). We claim that for any distinct vertices
+  %     \(u, v \in V(G)\), there are \(\delta(G)\) edge-disjoint paths between
+  %     them.
+  % \end{enumerate}
+  
+  % We claim that for any distinct vertices \(u, v \in V(G)\), there are 
+  % at least \(\delta(G)\) edge-disjoint paths between them. Then, by Menger's
+  % Theorem (\textit{Edge Edition}), we would have that for any pair of distinct
+  % vertices \(u, v\), the minimum number of edges we need to remove to separate
+  % \(u\) from \(v\) is \(\geq\delta(G)\). Consequently, the minimum number of edges
+  % we need to remove from \(G\) to make \(G\) disconnected is simply the minimum 
+  % of any pair, which is \(\delta(G)\). Namely, we need to show two things: (1.)
+  % The lower bound of edges we need to remove to separate any \(u, v\) pair is
+  % \(\delta(G)\); and (2.) there is always a \(u, v\) pair that has exactly
+  % \(\delta(G)\) edge-disjoint paths between them. 
+  %
+  % To prove (1.), suppose to contradict that there exist distinct \(u, v \in
+  % V(G)\) such that there are less than \(\delta(G)\) edge-disjoint paths between
+  % them.
+
+  % We will show this by
+  % showing that it is impossible to have greater/less than \(\delta(G)\)
+  % edge-disjoint paths between any pair of distinct vertices \(u, v\).
+  %
+  % Suppose to the contrary that there exist \(u, v \in V(G)\) such that there 
+  % are less than \(\delta(G)\) edge-disjoint paths between them. Then, without
+  % loss of generality, there must be \(x, y \in N(u)\) such that the \(u-v\)
+  % paths \(P_1 = \{u, x, \ldots, v\}\) and \(P_2 = \{u, y, \ldots, v\}\) share an
+  % edge.
+\end{solution}
