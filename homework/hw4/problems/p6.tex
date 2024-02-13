@@ -10,44 +10,47 @@ then $\lambda(G)=\delta(G)$.
   that \(\deg x + \deg y \geq n-1\) for every non-adjacent vertices \(x, y\),
   then \(G\) is connected and \(\diam(G) \leq 2\).
 
-  Let \(X\) be a minimal edge-cut of \(G\). Suppose to contradict
-  that \(|X| < \delta(G)\). Then, there must be a distinct \(u,
-  v \in V(G)\) pair that shares at least one edge in their path.
-  % We also already know that in every graph \(G\), we have that \(\lambda(G) 
-  % \leq \delta(G)\). Hence, it suffices to show that \(\lambda(G) \not{<} 
-  % \delta(G)\) to prove our claim.
-  % We will show this by case.
-  % \begin{enumerate}
-  %   \item If \(\diam(G) = 1\), then \(G\) must be complete since every any pair 
-  %     of distinct vertices has distance 1. Then, \(\lambda(G) = \lambda(K_n) =
-  %     n-1 = \delta(G)\) since every vertex has degree \(n-1\).
-  %   \item Otherwise, \(\diam(G) = 2\). We claim that for any distinct vertices
-  %     \(u, v \in V(G)\), there are \(\delta(G)\) edge-disjoint paths between
-  %     them.
-  % \end{enumerate}
-  
-  % We claim that for any distinct vertices \(u, v \in V(G)\), there are 
-  % at least \(\delta(G)\) edge-disjoint paths between them. Then, by Menger's
-  % Theorem (\textit{Edge Edition}), we would have that for any pair of distinct
-  % vertices \(u, v\), the minimum number of edges we need to remove to separate
-  % \(u\) from \(v\) is \(\geq\delta(G)\). Consequently, the minimum number of edges
-  % we need to remove from \(G\) to make \(G\) disconnected is simply the minimum 
-  % of any pair, which is \(\delta(G)\). Namely, we need to show two things: (1.)
-  % The lower bound of edges we need to remove to separate any \(u, v\) pair is
-  % \(\delta(G)\); and (2.) there is always a \(u, v\) pair that has exactly
-  % \(\delta(G)\) edge-disjoint paths between them. 
-  %
-  % To prove (1.), suppose to contradict that there exist distinct \(u, v \in
-  % V(G)\) such that there are less than \(\delta(G)\) edge-disjoint paths between
-  % them.
+  Suppose that \(X\) is a minimal edge-cut where the vertices of \(G - X\) are
+  separated into sets \(A\) and \(B\).
+  Without loss of generality, we also assume that \(A\) is adjacent
+  to some vertex of \(B\) in \(G\).
+  Otherwise, there must be \(a \in A\) such 
+  that for each \(b \in B\), there is a path \(a - c - b\) for some \(c \in 
+  A\) (or \(a\) would already be adjacent to \(c \in B\)) since \(\diam(G) \leq
+  2\). Then, this implies that every vertex in \(B\) is adjacent to some vertex 
+  in \(A\). In that case, we can just swap the notation of \(A\) and \(B\).
 
-  % We will show this by
-  % showing that it is impossible to have greater/less than \(\delta(G)\)
-  % edge-disjoint paths between any pair of distinct vertices \(u, v\).
-  %
-  % Suppose to the contrary that there exist \(u, v \in V(G)\) such that there 
-  % are less than \(\delta(G)\) edge-disjoint paths between them. Then, without
-  % loss of generality, there must be \(x, y \in N(u)\) such that the \(u-v\)
-  % paths \(P_1 = \{u, x, \ldots, v\}\) and \(P_2 = \{u, y, \ldots, v\}\) share an
-  % edge.
+  Consequently, every vertex of \(A\) is incident to some edge(s) in \(X\) 
+  and it follows that \(|X| \geq |A|\) (since every \(a \in A\) can be 
+  incident to more than one edge in \(X\)).
+
+  Since each vertex \(a \in A\) can be adjacent to at most \(|A| - 1\) in
+  \(G[A]\) (the disconnected component in \(G-X\)), each \(a \in A\)
+  would be incident to at least \( \delta(G) - |A| + 1 \)
+  edges in \(X\). Hence, it follows that 
+  \[
+    \begin{aligned}
+      |X| \geq |A|(\delta(G) - |A| + 1)
+    \end{aligned}
+  \]
+  Now, notice that \(1 \leq |A| \leq \delta(G)\). If \(|A| < 1\), then the
+  vertices of \(G\) is not split into two groups and \(X\) is not an edge-cut.
+  Similarly, \(|A| \leq |X| \leq \delta(G)\) for the second half or the
+  inequality.
+  Using Calculus, we can tell that \(|A|(\delta(G) - |A| + 1)\) has critical
+  points at \(|A| = 1, \frac{\delta(G)+1}{2}, \delta(G)\) with values
+  \[
+    \begin{aligned}
+      &|A| = 1,
+      && |A|(\delta(G) - |A| + 1) = \delta(G) \\
+      &|A| = \frac{\delta(G)}{2},
+      && |A|(\delta(G) - |A| + 1) = \frac{\delta(G)^2 + 2\delta + 1}{4} \\
+      &|A| = \delta(G),
+      && |A|(\delta(G) - |A| + 1) = \delta(G)
+    \end{aligned}
+  \]
+  We can see that \(|A|(\delta(G) - |A| + 1)\) achieves its minimum
+  value of \(\delta(G)\) at the bounds: \(|A| = 1, \delta(G)\). Hence, we have
+  that \(\delta(G) \leq |X| = \lambda(G) \leq \delta(G)\). Therefore, we can
+  conclude that \(\lambda(G) = \delta(G)\).
 \end{solution}
