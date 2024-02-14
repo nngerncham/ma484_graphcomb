@@ -1,1 +1,66 @@
 \question Derive the Hall's marriage theorem from König's theorem.
+
+\begin{solution}
+  % \begin{lemma}
+  %   Let \(G\) be a bipartite graph whose vertices are separated in to sets \(A\)
+  %   and \(B\) such that \(|A| \leq |B|\). Any matching \(M\) that contains every
+  %   vertex in \(A\) is maximal.
+  % \end{lemma}
+  %
+  % \begin{proof}
+  %   Suppose to contradict that
+  %   \(M\) contains every vertex in \(A\) but is not maximal. Then, there must be
+  %   more vertices in \(B\) that are adjacent to each other for them to match
+  %   with each other. However, no vertices in \(B\) can be adjacent to each
+  %   other since \(G\) is bipartite. Therefore, \(M\) must be maximal.
+  % \end{proof}
+  
+  \begin{lemma}
+    If \(C\) is a minimal vertex cover, then the marriage condition satisfies.
+  \end{lemma}
+
+  \begin{proof}
+    Suppose to the contrary that there exists \(S \subseteq C\) such that \(|S|
+    > |N(S)|\). Then, there must be at least one vertex \(x \in S\) whose
+    neighborhood is also \(N(S-x)\). That is, there is \(x\) such that \(N(S)
+    = N(S-x)\). Hence, we can remove that vertex the vertices in \(N(S-x)\)
+    would make up edges incident to \(x\) (and more) anyway. This implies that
+    \(C-x\) would still be a minimal vertex cover. This is a contradiction since
+    we already assume that \(C\) is a minimal vertex cover already. Therefore,
+    we can conclude that if \(C\) is a minimal vertex cover, then the marriage
+    condition satisfies.
+  \end{proof}
+
+  We will now prove Hall's Marriage Theorem using K\"onig's Theorem. First, for
+  the forward direction: If \(G\) has a matching of \(A\), then \(|S| \leq
+  |N(S)|\) for every \(S \subseteq A\). Note that the matching of \(A\) is
+  maximal. If not, then there must be more vertices in \(B\) that are adjacent
+  to each other---an impossibility. So, the the cardinality of the minimum
+  vertex cover is \(|A|\) by K\"onig's Theorem. Since \(G\) is bipartite, every
+  vertex of \(A\) must be incident to every edge of \(G\). Hence, \(A\) is also
+  a minimum vertex cover of \(G\) as well since it also has size \(|A|\). Since
+  \(A\) is a minimal vertex cover, then marriage condition satisfies as by the
+  lemma above.
+
+  Now, we will show the reverse direction: If \(|S| \leq |N(S)|\) for every \(S
+  \subseteq A\), then \(G\) has a matching of \(A\). Suppose to contradict that
+  the marriage condition satisfies but \(G\) has no matching of \(A\). Then, the
+  maximal matching must have size less than \(|A|\). By K\"onig's Theorem, the
+  minimal vertex cover has size strictly less than \(|A|\) as well. Let \(C = A'
+  \cup B'\) be the minimal vertex cover for some \(A' \subseteq A\) and \(B'
+  \subseteq B\). It follows that \(|C| = |A'| + |B'|\) and
+  \[
+    \begin{aligned}
+      |A'| + |B'| &< |A| \\
+      |B'| &< |A| - |A'| \\
+           &= |A \setminus A'|
+    \end{aligned}
+  \]
+  Since \(A'\) is part of the vertex cover, \(A \setminus A'\) are only adjacent
+  to elements in \(B'\) since vertices in \(B'\) are incident with the remaining
+  edges of \(G\). Consequently, we have that
+  \[ |N(A \setminus A')| \leq |B'| < |A \setminus A'| \]
+  This is a contradiction since we assumed that the marriage condition satisfies.
+  Hence, we have that if the marriage condition satisfies, then there exists a
+  matching of \(A\). 
+\end{solution}
