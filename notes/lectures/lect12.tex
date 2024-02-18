@@ -1,0 +1,125 @@
+\chapter{Planarity}
+
+\section{Core Definitions and Theorems}
+
+\begin{definition}
+  A graph \(G\) is called a planar graph if \(G\) can be drawn in
+  the plane so that no two of its edges cross each other.
+\end{definition}
+
+\begin{definition}
+  A graph \(G\) is called a plane graph if it is drawn in the
+  plane so that no two edges of \(G\) cross.
+\end{definition}
+
+\begin{nexample}
+  We can easily show that \(K_{4}\) is a planar graph.
+\end{nexample}
+
+\begin{nexample}
+  Did you know? The world map can be turned into a planar graph!
+  
+  Firstly, we can construct the world map as a graph where we
+  assign a vertex to each country. Then, if two countries share a
+  border, then you can draw an edge to it. Hence, we can just
+  draw the edges through the border and get a planar graph.
+
+  However, this does not mean that we can turn every map into a
+  planar graph. Still, it shows that we can make \textit{a}
+  planar graph from \textit{a} world map.
+\end{nexample}
+
+\begin{theorem}[The Euler Identity]
+  If \(G\) is a connected plane graph of order \(V\), size \(E\)
+  and having \(F\) regions (including outer region), then
+  \[ V-E+F=2 \]
+\end{theorem}
+
+\begin{proof}
+  We will show this by case.
+  \begin{enumerate}
+    \item If \(G\) is a tree, then \(F=1\) and \(E=V-1\). It
+      follows that
+      \[
+        \begin{aligned}
+          V-E+F &= V-(V-1)+1 \\
+                &= 2
+        \end{aligned}
+      \]
+
+    \item Otherwise, \(G\) is not a tree. Then, \(G\) must
+      contain a cycle.
+      We will apply induction on the number of edges.
+      Let \(e\) be an edge of the cycle.
+      Consider \(G' = G-e\). Notice that the \(V_{G'}\) remains
+      the same while \(E_{G'}\) and \(F_{G'}\) goes down by one
+      each. It follows that for \(G\),
+      \[
+        \begin{aligned}
+          V - E + F &= V - E + 1 + F - 1 \\
+                    &= \underbrace{V-(E-1)+(F-1)}_\text{I.H.} \\
+                    &= 2 
+        \end{aligned}
+      \]
+      Therefore, the claim holds.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+  If \(G\) is a planar graph of order \(n \geq 3\) and size
+  \(m\), then
+  \[ m \leq 3 n-6 \]
+\end{theorem}
+
+\begin{proof}
+  We will show this by case. 
+  \begin{enumerate}
+    \item \(G\) is connected. Notice that each face
+      is surrounded by \(\geq 3\) edges. Let \(M\) be the 
+      sum of the number of edges that each face is adjacent to. 
+      Then, we would have that 
+      \[ 3F \leq M \]
+      Notice also that each edge can only be adjacent to at most
+      2 faces since the graph is planar. It follows that
+      \[ M \leq 2m \]
+      Combining these, we have
+      \[ F \leq \frac{2m}{3} \]
+      Plugging this into The Euler Identity, we have
+      \[
+        \begin{aligned}
+          n - m + F &= 2 \\
+          F &= 2 + m - n \\
+          \frac{2m}{3} &\geq 2 + m - V \\
+          3n - 6 &\geq V
+        \end{aligned}
+      \]
+
+    \item Otherwise, \(G\) is disconnected. Then, you add edges
+      until \(G\) is connected and denote the new graph as
+      \(G'\). Notice that \(m' > m\) but \(n' = n\). Now that
+      \(G'\) is connected, we have that \(m' \leq 3n-6\).
+      Therefore, we have that
+      \[ m < m' \leq 3n-6 \]
+  \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+  Every planar graph contains a vertex of degree 5 or less.
+\end{corollary}
+
+\begin{proof}
+  Assume that \(\deg v \geq 6\) for all \(v \in V(G)\). Then, we
+  have that
+ \[
+    \begin{aligned}
+      2m &= \sum_{v \in V(G)} \deg v \\
+      2m &\geq 6n \\
+      m &\geq 3n
+    \end{aligned}
+  \]
+  This is a contradiction since we would otherwise have
+  \[ 3n \leq m \leq 3n - 6 \]
+  Therefore, every planar graph must contain a vertex of degree
+  5 or less.
+\end{proof}
+
