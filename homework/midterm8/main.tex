@@ -1,0 +1,67 @@
+% === HOMEWORK PORTION ===
+\documentclass[answers]{exam}
+
+\input{preamble.tex}
+\input{macros.tex}
+
+\renewcommand{\questionlabel}{\textbf{Problem \thequestion.}}
+\renewcommand{\solutiontitle}{}
+
+\title{\Huge{Midterm Problem 8 Redo}
+	\\
+\Large\scshape{Graph Theory and Combinatorics}}
+\author{Nawat Ngerncham (6380496)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{questions}
+  \setcounter{question}{7}
+  \question Prove that a graph \(G\) is 2-connected if and only if
+  for every ordered triple \((x, y, z)\) of vertices, there is an
+  \(x-z\) path through \(y\).
+  \begin{solution}
+    First, we will show the forward direction: If a graph is
+    2-connected, then for every ordered triple \((x, y, z)\) of
+    vertices, there is an \(x-z\) path through \(y\). Fix \(x,
+    z\) to be distinct vertices in \(G\). Without loss of
+    generality, there must be \(x-y\) and \(x-z\) paths since the
+    graph is connected. Now, consider \(y\). If \(y, z\) are
+    adjacent, then we are done and we have a \(x-z\) path that
+    goes through \(y\).
+
+    Otherwise, there are at least 2 internally disjoint \(y-z\)
+    paths since the graph is 2-connected by Menger's Theorem.
+    Then, there is a \(y-z\) path that does not go through \(x\)
+    by the Pigeonhole Principle. Let us call this path \(P\).
+    Hence, there is a \(x-z\) path that goes through \(y\) by
+    concatenating the original \(x-y\) path and \(P\). Therefore,
+    if a graph \(G\) is 2-connected, then for every ordered
+    triple \(x, y, z\) in \(G\), there is an \(x-z\) path through
+    \(y\).
+
+    Next, we will show the converse direction: If for every
+    ordered triple \(x, y, z\) of vertices, there is an \(x-z\)
+    path through \(y\) in a graph \(G\), then \(G\) is
+    2-connected. We will show this by contrapositivity:
+    Assume that \(G\) is not 2-connected (i.e., \(G\) is 
+    1-connected). Then, we will show there are \(x, y, z \in 
+    V(G)\) such that that there is no \(x-z\) path
+    through \(y\) in a graph \(G\).
+
+    Since \(G\) is 1-connected, there is a cut vertex. Fix \(z\)
+    to be a cut vertex and let \(x\) and \(y\) belong to 
+    different components in \(G-z\). Note that \(G-z\) must have
+    two components. Otherwise, \(G-z\) would still be connected
+    and \(z\) would not be a cut vertex. Consequently, there
+    would be no \(x-z\) path through \(y\).
+  \end{solution}
+\end{questions}
+
+% % in case of needing citations
+% \bibliographystyle{plainurl}
+% \bibliography{refs}
+
+\end{document}
