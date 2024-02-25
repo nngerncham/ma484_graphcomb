@@ -1,3 +1,38 @@
 \question For a simple planar graph \(G\) and \(W \subseteq
-V(G)\) with \(|W| = k \geq 3\) (and \(|V|=n\) ), show that
-\[ \sum_{x \in W} d(x) \leq 2 n+6 k-16 \]
+V(G)\) with \(|W| = k \geq 3\) (and \(|V|=n\)), show that
+\[ \sum_{x \in W} \deg(x) \leq 2n + 6 k - 16 \]
+
+\begin{solution}
+  % We will show this by case:
+  % \begin{enumerate}[label=\Roman*.]
+  %   \item \(W = V(G)\). Then, we have that \(|W| = k = n\). Consequently, the
+  %     RHS of our claim becomes
+  %     \[ 2n + 6k - 16 = 2n + 6n - 16 = (6n - 12) + (2n - 4) \]
+  %     Similarly, we also have that
+  %     \[
+  %       \begin{aligned}
+  %         \sum_{x \in W} \deg x &= 2m \\
+  %                               &\leq 2(3n - 6) \\
+  %                               &= 6n - 12 \\
+  %       \end{aligned}
+  %     \]
+  %     Since \(|W| = n = k \geq 3\), it follows that \(2n - 4 \geq 6-4 = 2 > 0\). 
+  %     Hence, it follows that
+  %     \[
+  %       \begin{aligned}
+  %         \sum_{x \in W} \deg x &\leq 6n - 12 \\
+  %                               &< (6n - 12) + (2n - 4) \\
+  %                               &= 2n + 6k - 16
+  %       \end{aligned}
+  %     \]
+  %     Thus, we have that \(\sum_{x \in W} \deg x \leq 2n + 6k - 16\).
+  %
+  %   \item \(W \subsetneq V(G)\). Then, we have that \(|W| = k < n\).
+  % \end{enumerate}
+
+  Without loss of generality, let us assume that \(G\) has no isolated vertex
+  since an isolated vertex has degree 0 so the summation in the LHS would not
+  change while the RHS increases.
+  Notice also that for each non-isolated vertex \(v\) in a planar graph \(G\), 
+  the number of faces that a vertex is adjacent to is at most its degree.
+\end{solution}
