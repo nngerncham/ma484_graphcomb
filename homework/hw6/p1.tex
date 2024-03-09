@@ -1,0 +1,148 @@
+\setcounter{question}{3}
+\question A graph \(G\) is \(k\)-critical if \(\chi(G)=k\) and if
+  the deletion of any vertex yields a graph with smaller chromatic
+  number.
+  \begin{enumerate}[label=(\roman*)]
+    \item Find all 2-critical and 3-critical graphs.
+      \begin{solution} 
+        Let us define the following term to help with this
+        problem.
+
+        \begin{definition}[Tree Portion]
+          A \textit{tree portion} of a graph \(G\) is a
+          subgraph \(T = G[\tau]\) where \(\tau\) is a set of
+          vertices in \(G\) such that all but one vertex in
+          \(\tau\) lies on a cycle and \(T\) is connected.
+        \end{definition}
+        
+        \textbf{2-critical.} Note that all graphs \(G\) such that
+        \(\chi(G) = 2\) are made up of the tree graph and cyclic
+        graphs with even length where they are joined such that
+        every cycle has even length. Otherwise, there is an odd
+        cycle which requires 3 colors to color.
+
+        \begin{center}
+          \includegraphics[width=0.6\textwidth]{figures/2-colorable}
+        \end{center}
+
+        Claim that the only 2-critical graph is a tree of order
+        2. Indeed, we can remove either vertex and be left with
+        one. In either case, we result in graph \(H\) such that
+        \(\chi(H) = 1\).
+
+        Now, we will show that every other graphs with chromatic
+        number 2 is not 2-critical. First, let \(T\) be any tree
+        of order \(\geq3\). Recall the claim in part (iii) of this
+        problem: If \(G\) is \(k\)-critical, then \(G\) has no
+        cut-vertex. Since every vertex of \(T\) is a cut-vertex,
+        \(T\) cannot be 2-critical by contrapositivity.
+
+        Finally, let \(G\) be a graph with only even cycles. That
+        is, every vertex \(v\) is part of an even cycle or is not
+        in a cycle at all.
+        \begin{enumerate}
+          \item If \(v\) is not in any cycle, then \(v\) is in
+            the \textit{tree portion} of \(G\). Consequently,
+            \(v\) is either a cut-vertex or a leaf of the tree.
+            If \(v\) is a leaf, then removing it does not change
+            the chromatic number. If \(v\) is a cut-vertex, then
+            \(G\) is not 2-critical by the result below. In both
+            cases, \(\chi(G - v)\) does not change from
+            \(\chi(G)\).
+
+          \item Otherwise, \(v\) is part of an even cycle, say
+            \(C\). Note that \(v\) can be part of multiple cycles
+            but we can just apply this argument on every cycle
+            \(v\) is a part of. Observe that \(C - v\) is a tree.
+            Then, by the same argument as above, \(C-v\) has the
+            same chromatic number and consequently, so does
+            \(G\).
+        \end{enumerate}
+        Therefore, the tree of order 2 is the only 2-critical
+        graph.
+
+        \textbf{3-critical.} Claim that a graph is 3-critical
+        if and only if \(G = C_n\) for some odd \(n\).
+
+        We will first the reverse direction since it is simpler.
+        Let \(G\) be a cyclic graph of odd length \(n\). Hence,
+        \(\chi(G) = 3\). Removing any vertex in \(G\) results in
+        a tree. Thus, \(\chi(G-v) = 2\) for any \(v \in V(G)\).
+        Therefore, \(C_n\) with \(n\) odd is 3-critical.
+
+        We will now show the forward direction. Let \(G\) be a
+        3-critical graph. Then, \(G\) must contain an odd cycle,
+        say \(C\). Suppose to contradict that \(G\) contains 
+        at least one of the following:
+        \begin{itemize}
+          \item an even cycle,
+          \item a \textit{tree portion}; or
+          \item another odd cycle \(C' \neq C\). 
+        \end{itemize}
+        Observe that removing any vertex from the above subgraphs
+        does not disconnect \(C\). So, \(\chi(G-v)=3\) for any
+        \(v\) in an even cycle, a tree portion, or another distinct
+        odd cycle subgraph of \(G\). Therefore, every 3-critical
+        graph cannot contain an even cycle, a tree portion, and
+        can only have one unique odd cycle. Therefore, a
+        3-critical graph is a \(C_n\) with \(n\) odd.
+      \end{solution}
+
+    \item Give an example of a 4-critical graph,
+      \begin{solution}
+        \centering
+        \includegraphics[width=0.3\textwidth]{figures/4-critical}
+      \end{solution}
+
+    \item Prove that, if \(G\) is \(k\)-critical, then
+      \begin{enumerate}[label=(\alph*)]
+        \item every vertex of \(G\) has degree at least \(k-1\),
+          \begin{solution}
+            Suppose to contradict that there exists a vertex
+            \(v\) such that \(\deg v < k-1\). Note that \(G-v\)
+            is \((k-1)\)-colorable since \(G\) is \(k\)-critical.
+            Note also that there must be a color \(c\) in the
+            \((k-1)\)-coloring such that \(v\) is not adjacent to
+            any vertex colored with \(c\) since there are \(k-1\)
+            colors but \(v\) is adjacent to less than that many
+            vertices. This is a contradiction since we can then
+            color \(v\) with \(c\) since it is not adjacent to
+            any vertex colored with \(c\) but \(G\) would still
+            be \((k-1)\)-colorable. Therefore, a \(k\)-critical
+            graph \(G\) satisfies \(\delta(G) \geq k-1\).
+          \end{solution}
+
+        \item \(G\) has no cut-vertices.
+          \begin{solution}
+            We will show this using contrapositivity: Let \(G\)
+            be a \(k\)-chromatic graph with a cut-vertex \(x\).
+            We will show that \(G\) is not \(k\)-critical.
+
+            Suppose that \(G-v\) is split into components
+            \(G_1, G_2, \ldots, G_c\) where \(c\) is the number
+            of components. Abusing notation, let \(G_i \cup
+            x\) be the \textbf{induced subgraph} of \(V(G_i)
+            \cup x\). Observe that 
+            \[
+              \chi(G) =
+              \max_{i \in 1..c} \chi(G_i \cup x)
+            \]
+            This is because every induced subgraph \(G_i \cup x\)
+            is disjoint except at \(x\). So, we can color them
+            independently after assigning a color for \(x\) and
+            the chromatic number of \(G\) is the same as the
+            component with the highest chromatic number.
+
+            Let \(G_j \cup x\) be a component with the highest
+            chromatic number. That is, 
+            \[
+              \chi(G_j \cup x) = \max_{i \in 1..c} \chi(G_i \cup x) 
+            \]
+            Note that \(G_j\) may not be unique. Still, removing
+            any vertex \(v\) from any component other than \(G_j\)
+            would not change the chromatic number of \(G-v\).
+            That is, \(\chi(G) = \chi(G-v)\). Thus, \(G\) is not
+            \(k\)-critical.
+          \end{solution}
+      \end{enumerate}
+  \end{enumerate}

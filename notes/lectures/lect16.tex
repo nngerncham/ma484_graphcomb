@@ -1,0 +1,80 @@
+\section{Vertex Coloring}
+
+\begin{definition}[\(k\)-coloring and \(k\)-chromatic]
+  A coloring that uses \(k\) colors is called a \(k\)-coloring.
+  If \(\chi(G)=k\), then \(G\) is said to be \(k\)-chromatic.
+\end{definition}
+
+If \(G\) is a \(k\)-chromatic graph, then we can partition 
+\(V(G)\) into \(k\) independent sets called \textit{color
+classes}: \(V_1, V_2, \ldots, V_k\). However, we cannot do the
+same with \(k-1\) independent sets. Note that
+\[ \sum_{i=1}^k V_k = n \]
+
+\begin{theorem}
+  A graph has chromatic number 2 if and only if \(G\) is a
+  non-trivial bipartite graph.
+\end{theorem}
+
+\begin{proof}
+  To show the forward direction, assume that \(G\) has chromatic
+  number 2. As a result, we have 2 independent sets according to
+  the coloring. Then, let \(A\) be the set of vertices colored
+  red and \(B\) be for blue. Then, \(A\) and \(B\) form the
+  bipartite sets that make up a bipartite graph.
+
+  To show the inverse direction, we can simply color the two
+  partite sets of the graph different colors.
+\end{proof}
+
+\begin{theorem}
+  Every graph \(G\) with \(m\) edges satisfies
+  \[ \chi(G) \leq \frac{1}{2}+\sqrt{2 m+\frac{1}{4}} \]
+\end{theorem}
+
+\begin{proof}
+  Let \(k = \chi(G)\). Then, \(G\) has least one edge between two
+  color classes. If not, then we can join the color classes that
+  share no edge with each other since they are independent.
+  Thus, we have that
+  \[ m \geq \binom{k}{2} = \frac{k(k-1)}{2} \]
+  Solving this for \(k\) gives the bound in the claim.
+\end{proof}
+
+\begin{definition}
+  The \textit{vertex independence number} of \(G\), denoted
+  \(\alpha(G)\), is the maximum number of vertices of \(G\) such
+  that no two of which are adjacent.
+\end{definition}
+
+\begin{theorem}
+  \[ \frac{n}{\alpha(G)} \leq \chi(G) \leq n - \alpha(G) + 1 \]
+\end{theorem}
+
+\begin{proof}
+  First, we will show the lower bound. Recall that we have
+  \[
+    \begin{aligned}
+      |V_1| + |V_2| + \cdots + |V_{\chi(G)}| &= n \\
+      \alpha(G) \cdot \chi(G) &\geq n \\
+      \chi(G) &\geq \frac{n}{\alpha(G)}
+    \end{aligned}
+  \]
+
+  For the upper bound, we already know that 
+  \[ |V_1| + |V_2| + \cdots + |V_{\chi(G)}| = n \]
+  which is 
+  \[ \alpha(G) + 1 + \cdots + 1 = n \]
+  in the case that we need the most colors.
+  We can color the biggest independent set with color 1 and color
+  the rest with different colors. Then, we have
+  \[ \alpha(G) + \underbrace{1+1 + \cdots + 1}_{\chi(G)-1} = n \]
+  Finally, we would have
+  \[
+    \begin{aligned}
+      \chi(G) &= n + 1 - \alpha(G) \\
+      \chi
+    \end{aligned}
+  \]
+\end{proof}
+
