@@ -1,3 +1,53 @@
 \setcounter{question}{5}
 \question If \(G\) is connected and \(\Delta\)-regular with a
   cut-vertex \(x\), then \(\chi^{\prime}(G)>\Delta\).
+\begin{solution}
+  Let \(n\) be the number of verties in \(G\). We will show this
+  by case. For this problem, we will use \(\Delta\) and
+  \(\Delta(G)\) interchangeably. This does not affect the result
+  since \(G\) is a \(\Delta\)-regular graph so \(\Delta =
+  \Delta(G)\) anyway.
+
+  \begin{enumerate}[label=\Roman*.]
+    \item If \(n\) is odd, let \(m = |E(G)|\). Then, we have 
+      \[
+        \begin{aligned}
+          2m &= \sum_{v \in V(G)} \deg v \\
+          2m &= n \cdot \Delta \\
+          m  &= \frac{n \cdot \Delta}{2} \\
+             &> \frac{(n-1) \cdot \Delta}{2} 
+        \end{aligned}
+      \]
+      Therefore, by Theorem 14, we have that \(\chi'(G) =
+      \Delta + 1 > \Delta\).
+
+    \item Otherwise, \(n\) is even. Suppose that \(G - x\) is
+      separated into components \(G_1, G_2, \ldots, G_k\).
+      Note that
+      \[ \sum_{i=1}^k |V(G_i)| = n-1 \]
+      So, there must be a component, say \(G_i\), that has an odd
+      number of vertices in it. Let \(l\) be the number of edges
+      in \(G_i\)
+      that is incident to \(x\) and observe that the following 
+      satisfies: \(0 < l < \Delta\) since if \(l = 0\), then \(G\)
+      is disconnected; and if \(l = \Delta\), then \(x\) is not
+      connected to any other component.
+      Observe also that since \(x\) is a cut vertex, every edge in
+      \(G_i\) that is not incident to \(x\) is incident to
+      another vertex in \(G_i\).
+      Let \(H\) be the subgraph of \(G\) induced
+      by \(G_i\) and let \(s = |V(H)|\). Consider
+      \[
+        \begin{aligned}
+          |E(H)| &= \frac{\sum_{v \in H} \deg_H v}{2} \\
+                 &= \frac{s \cdot \Delta - l}{2} \\
+                 &> \frac{(s-1)\cdot\Delta}{2}
+        \end{aligned}
+      \]
+      Note that \(l\) is not double-counted here since \(x\) is
+      not part of the summation.
+      By Theorem 14, we have that the \(\chi'(H) = \Delta+1\).
+      Therefore, since \(H \subseteq G\), \(\chi'(G) = \Delta+1 >
+      \Delta\) as well.
+  \end{enumerate}
+\end{solution}

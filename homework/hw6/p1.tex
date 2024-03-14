@@ -15,7 +15,14 @@
           \(\tau\) lies on a cycle and \(T\) is connected.
         \end{definition}
         
-        \textbf{2-critical.} Note that all graphs \(G\) such that
+        \textbf{2-critical.} Claim that the only 2-critical graph
+        is a tree of order 2.
+
+        Indeed, we can remove either vertex and be left with
+        one. In either case, we result in graph \(H\) such that
+        \(\chi(H) = 1\).
+
+        Note that all graphs \(G\) such that
         \(\chi(G) = 2\) are made up of the tree graph and cyclic
         graphs with even length where they are joined such that
         every cycle has even length. Otherwise, there is an odd
@@ -24,11 +31,6 @@
         \begin{center}
           \includegraphics[width=0.6\textwidth]{figures/2-colorable}
         \end{center}
-
-        Claim that the only 2-critical graph is a tree of order
-        2. Indeed, we can remove either vertex and be left with
-        one. In either case, we result in graph \(H\) such that
-        \(\chi(H) = 1\).
 
         Now, we will show that every other graphs with chromatic
         number 2 is not 2-critical. First, let \(T\) be any tree
@@ -60,6 +62,8 @@
         \end{enumerate}
         Therefore, the tree of order 2 is the only 2-critical
         graph.
+
+        \vspace{5em} 
 
         \textbf{3-critical.} Claim that a graph is 3-critical
         if and only if \(G = C_n\) for some odd \(n\).
