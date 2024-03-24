@@ -1,0 +1,39 @@
+\section{Diameter}
+
+\begin{frame}{Diameter on fixed $p$ random graphs is 2 w.h.p.}
+    \begin{theorem}
+        Let \(G(n, p)\) be a random graph of order $n$ and each edge appears with fixed probability $p \in (0, 1)$. 
+        Then, \(\diam(G) \leq 2\) w.h.p.
+    \end{theorem}
+
+    \begin{lemma}
+        Let \(G(n, p)\) be a random graph of order $n$ and each edge appears with fixed probability $p \in (0, 1)$. 
+        Then, every pair of distinct vertices $u, v$ have shared neighborhood w.h.p.
+    \end{lemma}
+\end{frame}
+
+\begin{frame}{Diameter on fixed $p$ random graphs is 2 w.h.p. --- Proof}
+    \begin{proof}[Proof of Lemma]
+        Define a random variable $X_{u, v}$ to be 1 if $N(u) \cap N(v) = \emptyset$ and 0 otherwise and define $X$ to be the sum of all $X_{u, v}$'s. Note that the probability that two vertices share no common neighbor is
+        \[ \Pr{N(u) \cap N(v) = \emptyset} = (1-p^2)^{n-2} \]
+        where $p^2$ is the probability that $u$ and $v$ pick the same neighbor where there are $n-2$ of such possibilities.
+        By Markov's Inequality, we have
+        \[
+        \begin{aligned}
+            \Pr{X \geq 1} \leq \Ex{X}
+                          = \binom{n}{2}(1-p^2)^{n-2} \to 0 \text{ as } n \to \infty \qquad \text{[SageMath verified]}
+        \end{aligned}
+        \]
+        Since $\Pr{X < 1} = 1 - \Pr{X \geq 1}$, the claim of the lemma satisfies w.h.p.
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Diameter on fixed $p$ random graphs is 2 w.h.p. --- Proof}
+    \begin{proof}[Proof of Theorem]
+        Note that the probability that $\diam(G) \leq 2$ is the same as the probability that every pair of distinct vertices $u, v$ are adjacent or share a common neighbor. Hence, the probability that every distinct pair of vertices share a common neighbor is a lower bound for $\Pr{\diam(G) \leq 2}$.
+
+        Let $X$ be the number of pairs of distinct vertices that do not share neighbors. We can conclude that
+        \[ \Pr{\diam(G) \leq 2} \geq \Pr{X < 1} \to 1 \text{ as } n \to \infty \]
+        Therefore, the diameter of random graph $G(n, p)$ with fixed $p$ is at most 2 w.h.p.
+    \end{proof}
+\end{frame}

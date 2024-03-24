@@ -1,0 +1,230 @@
+\section{Triangles}
+
+\begin{frame}[fragile]{Approximating Number of Triangles}
+  \begin{algorithm}[H]
+  \caption{\textsc{ApproxTriCount}(Graph \(G\), Integer \(T\))}
+  \begin{algorithmic}
+    \State{\(\alpha \gets 0\)}
+    \For{i=1, 2, ..., T}
+      \State{Pick an edge \((u, v)\) u.a.r. from \(E(G)\)}
+      \State{Pick a vertex \(w\) u.a.r. from \(V(G) \setminus \{u, v\}\)}
+      \If{\((u, w)\) and \((v, w) \in E(G)\)}
+        \State{Increment \(\alpha\)}
+      \EndIf
+    \EndFor
+    \State{\(\hat{\tau} \gets \frac{\alpha}{T} \cdot \frac{m(n-2)}{3}\)}
+    \State{\Return \(\hat{\tau}\)}
+  \end{algorithmic}
+  \end{algorithm}
+\end{frame}
+
+\begin{frame}{\textsc{ApproxTriCount} Analysis}
+  \begin{theorem}[Expected output]
+    Let \(\tau\) be the true number of triangles in \(G\).
+    \textsc{ApproxTriCount} returns a random variable \(\hat{\tau}\) with expected
+    value
+    \[ \Ex{\hat \tau} = \tau \]
+  \end{theorem}
+\end{frame}
+
+\begin{frame}{\textsc{ApproxTriCount} Analysis}
+  \begin{proofs}
+    Let us first identify the probability of the algorithm picking triangle \(t\) at
+    iteration \(i\). Consider a triangle \(t\). WLOG, the edge \((u, v)\) that we
+    picked u.a.r. is part of \(t\) w.p. \(3/m\). Then, the probability that we
+    pick a specific \(w\) such that \(\{u, v, w\}\) form \(t\) is \(\frac{1}{(n-2)}\).
+    Hence, the probability that we pick a triangle at iteration \(i\) is
+    \[ \frac{3}{m} \cdot \frac{1}{n-2} = \frac{3}{m(n-2)} \]
+
+    Since there are \(\tau\) triangles in \(G\), the probability that we pick
+    \textit{any} triangle at iteration \(i\) is
+    \[ \Pr{\text{Algorithm picks any triangle}} = \frac{3\tau}{m(n-2)} \]
+  \end{proofs}
+\end{frame}
+
+\begin{frame}{\textsc{ApproxTriCount} Analysis}
+  \begin{proof}
+    Hence, it follows that after \(T\) iterations, the expected value of
+    \(\alpha\) is
+    \[ \Ex{\alpha} = \frac{3\tau \cdot T}{m(n-2)} \] 
+
+    Finally, we have that
+    \[
+    \begin{aligned}
+      \Ex{\hat{\tau}} &= \Ex{\frac{\alpha}{T} \cdot \frac{m(n-2)}{3}} \\
+             &= \Ex{\alpha} \cdot \frac{m(n-2)}{3T} \\
+             &= \frac{3\tau T}{m(n-2)} \cdot \frac{m(n-2)}{3T} = \tau
+    \end{aligned}
+    \]
+    Therefore, the expected output of
+    \textsc{ApproxTriCount} is the true number of triangles.
+  \end{proof}
+\end{frame}
+
+\begin{frame}{Picking a good \(T\)}
+  \begin{theorem}
+    Suppose that \(\tau\) is the true number of triangles in \(G\) and
+    let \(\epsilon > 0\) and \(0 < \delta \leq 1/2\). 
+    Running \textsc{ApproxTriCount}\((G, T)\) with
+    \(T \geq \frac{3\tau}{\epsilon^2}\ln(2/\delta)\) returns \(\hat \tau\) 
+    satisfying \(|\hat \tau - \tau| < \epsilon\) w.p.
+    \[ \Pr{|\hat\tau - \tau| < \epsilon} \leq 1 - \delta \]
+  \end{theorem}
+\end{frame}
+
+\begin{frame}{Picking a good \(T\)}
+  \begin{proofs}
+    First, note that \(\Pr{|\hat\tau - \tau| < \epsilon} \geq 1 - \delta\) is 
+    equivalent to \(\Pr{T|\hat\tau - \tau| \geq T\epsilon} \leq \delta\). To
+    fit this problem into something C-H can handle, we let \(\epsilon =
+    \delta\tau\). Then, it follows that
+    \[
+      \begin{aligned}
+        \Pr{T|\hat\tau - \tau| \geq T\epsilon}
+          &= \Pr{T|\hat\tau - \tau| \geq \delta(T\tau)} \\
+          &\leq 2\exp\left(-\frac{\delta^2 T\tau}{3}\right) \\
+          &= 2\exp\left(-\frac{\epsilon^2 T}{3\tau}\right)
+      \end{aligned}
+    \]
+  \end{proofs}
+\end{frame}
+
+\begin{frame}{Picking a good \(T\)}
+  \begin{proof}
+    Since \(T \geq \frac{3\tau}{\epsilon^2}\ln(2/\delta)\), we have the
+    following. 
+    \[
+      \begin{aligned}
+        2\exp\left(-\frac{\epsilon^2 T}{3\tau}\right)
+          &= \frac{2}{\exp\left(\frac{\epsilon^2 T}{3\tau}\right)} \\
+          &\leq \frac{2}{\exp\left(\frac{\epsilon^2}{3\tau} \cdot
+            \frac{3\tau}{\epsilon^2}\ln(2/\delta)\right)} \\
+          &= \frac{2}{e^{\ln(2/\delta)}} \\
+          &= \delta
+      \end{aligned}
+    \]
+
+    Therefore, the claim of the theorem holds.
+  \end{proof}
+\end{frame}
+
+\begin{frame}{Streaming Setting}
+  \begin{center}
+    Not all data is static---what if the data is given to you one by one?
+  \end{center}
+\end{frame}
+
+\begin{frame}{Reservoir Sampling}
+  When it comes to sampling from a stream, one of the most popular algorithm
+  used is reservoir sampling \cite{reservoir-vitter}.
+
+  \begin{algorithm}[H]
+  \caption{\textsc{Sample}(Data stream \(X\)) from \cite{reservoir-vitter}}
+  \begin{algorithmic}
+    \State{\(s \gets X[1]\)}
+    \For{\(i = 2, 3, \ldots, n\)}
+      \If{\textsc{Coin}\((1/i)\) lands heads}
+        \State{\(s \gets X[i]\)}
+      \EndIf
+    \EndFor
+    \State{\Return \(s\)}
+  \end{algorithmic}
+  \end{algorithm}
+
+  Note: \textsc{Coin}\((p)\) flips a biased coin that lands heads w.p. \(p\).
+
+  Main property of RS: At the end, we maintain a true random sample of \(X\).
+\end{frame}
+
+\begin{frame}{Streaming Algorithm}
+  \begin{algorithm}[H]
+  \caption{\textsc{SampleTriangleStream}(Stream of edges \(E\))
+  from \cite{Buriol_Frahling_Leonardi_Marchetti-Spaccamela_Sohler_2006}}
+  \begin{algorithmic}
+    \State{\(i \gets 1\)}
+    \For{edge \(e = (u, v)\) from stream}
+      \If{\textsc{Coin}\((1/i)\) lands heads}
+        \State{\(a \gets u\); \(b \gets v\)}
+        \State{Pick a vertex \(w\) u.a.r. from \(V \setminus \{a, b\}\)}
+        \State{\(x \gets F\); \(y \gets F\)}
+      \EndIf
+      \State{\textbf{if} \(e = (a, w)\) \textbf{then} \(x \gets T\)}
+      \State{\textbf{if} \(e = (b, w)\) \textbf{then} \(y \gets T\)}
+      \State{Increment \(i\)}
+    \EndFor
+    \State{\textbf{if} \(x \land y\) \textbf{then} \Return 1 \textbf{else} \Return 0}
+  \end{algorithmic}
+  \end{algorithm}
+
+  Note: We assume that we already know the vertices beforehand.
+\end{frame}
+
+\begin{frame}{\textsc{SampleTriangleStream} Analysis}
+  \begin{lemma}[Output value]
+    Suppose that \textsc{SampleTriangle} outputs a value \(\beta\). The expected
+    output is
+    \[ \Ex{\beta} = \frac{|T_3|}{|T_1| + 2|T_2| + 3|T_3|} \]
+    where \(T_i\) refers to vertex triplets with \(i\) edges in its induced
+    subgraph.
+  \end{lemma}
+\end{frame}
+
+\begin{frame}{\textsc{SampleTriangleStream} Analysis}
+  \begin{proofs}
+    First, we will show that there are in total
+    \[ m(n-2) = |T_1| + 2|T_2| + 3|T_3| \]
+    choices for the algorithm to sample an edge and a vertex. Since we pick an edge
+    then another vertex from what remains, the LHS is obvious.
+
+    For the RHS, let \(t = \{u, v, w\}\)
+    be a triple of vertices.
+    \begin{itemize}
+      \item Let \(t \in T_1\). There is only one way of picking \(t\). WLOG, we
+        do this by picking edge \((u, v)\) and vertex \(w\).
+      \item Let \(t \in T_2\). There are 2 ways of picking \(t\). WLOG, we could pick
+        the edge \((u, v)\) along with vertex \(w\) or pick the edge \((u, w)\)
+        along with vertex \(v\).
+      \item Let \(t \in T_3\). There are 3 ways of picking \(t\). Indeed, we can
+        pick any of the three edges along with the other vertex.
+    \end{itemize}
+    Thus, in total, there are \(|T_1| + 2|T_2| + 3|T_3|\) choices for the
+    algorithm to sample an edge and a vertex.
+  \end{proofs}
+\end{frame}
+
+\begin{frame}{\textsc{SampleTriangleStream} Analysis}
+  \begin{proof}
+    Notice that \textsc{SampleTriangleStream} returns 1 if it picks \((a, b)\)
+    and \(w\) such that \(\{a, b, w\} \in T_3\) and \((a,
+    b)\) is the first edge of the triplet that shows up in the stream. Hence,
+    \[ \Ex{\beta} = \frac{|T_3|}{|T_1| + 2|T_2| + 3|T_3|} \]
+  \end{proof}
+\end{frame}
+
+\begin{frame}{\textsc{SampleTriangleStream} Analysis}
+  \begin{theorem}
+    Let \(s\) be the number of parallel instances of
+    \textsc{SampleTriangleStream} where instance \(i\) returns \(\beta_i\).
+    Similarly, let
+    \[ \hat{T_3} = \left(\frac{1}{s} \sum_{i=1}^s \beta_i\right) \cdot m(n-2) \]
+    Then, 
+    \[ \Pr{\left|\hat{T_3} - |T_3|\right| < \epsilon} \geq 1-\delta \]
+    for any \(s\) satisfying
+    \[
+      s \geq \frac{3|T_3|}{\epsilon^2} \cdot \ln(2/\delta) 
+    \]
+  \end{theorem}
+\end{frame}
+
+\begin{frame}{\textsc{SampleTriangleStream} Analysis}
+  \begin{proof}
+    The proof is the same as when we were picking a good \(T\) for static \(G\).
+  \end{proof}
+\end{frame}
+
+\begin{frame}{\textsc{SampleTriangleStream} Analysis}
+  It is easy to see that we only need \(O(s)\) space to run this algorithm where
+  each instance requires \(O(1)\) to keep track of \(a, b, w\).
+
+  Note also that the running time on each instance is \(O\left(1 + \frac{\log m}{m}\right)\) in amortized expectation. This is because \textit{expensive operations} are when \textsc{Coin} lands heads which happens \textit{$O(\log m)$} times in expectation \cite{Buriol_Frahling_Leonardi_Marchetti-Spaccamela_Sohler_2006}.
+\end{frame}

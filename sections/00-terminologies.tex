@@ -1,0 +1,45 @@
+\section{House-keeping}
+
+\begin{frame}{With high probability (w.h.p.)}
+    \begin{definition}[With high probability]
+        We say that event $A$ happens \textit{with high probability (w.h.p.)} if, for some constant $c > 0$,
+        $$ \Pr{A} \geq 1 - \frac{1}{n^c} = 1 - O\left(\frac{1}{n^c}\right)$$
+    \end{definition}
+
+    \begin{definition}[Almost surely]
+        We say that an event $A$ happens \textit{almost surely (a.s.)} if
+        $$ \Pr{A} \to 1 \text{ as } n \to \infty$$
+    \end{definition}
+
+    In this case, $n$ is often the number of observations we make or the \textit{size of the problem}. Note that we may use them interchangeably.
+\end{frame}
+
+\begin{frame}{Simple Concentration Bounds}
+    \begin{theorem}[Markov's Inequality]
+        Let \(X\) be a non negative random variable and \(\lambda>0\), then
+        \[
+            \Pr{X \geq \lambda} \leq \frac{\mathbb{E}[X]}{\lambda}
+        \]
+    \end{theorem}
+    \begin{theorem}[Chebyshev's Inequality]
+        Let $X$ random variable with finite $\mathbb{E}[X]$ and Var($X$), then for any $t > 0$
+        \[
+            \Pr{|X - \mathbb{E}[X]| \geq t} \leq \frac{\text{Var}(X)}{t^2}
+        \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Chernoff-Hoeffding Bounds}
+    
+    \begin{theorem}[Chernoff-Hoeffding Bounds]
+        Let $X_1, X_2, \cdots, X_n$ be an independently and identically distributed random variables taking values in $\lbrace 0, 1 \rbrace$, $\bold{X} = \sum_i X_i$, and $\mu = \mathbb{\mathbf{E}}[\bold{X}]$. Then, for some $0 < \delta < 1$, the following inequalities hold,
+
+        \begin{enumerate}
+            \item $\textbf{Pr}[\bold{X} \geq (1 + \delta)\mu] \leq \exp\left(-\frac{\delta^2 \mu}{2 + \delta}\right)$
+            \item $\textbf{Pr}[\bold{X} \leq (1 - \delta)\mu] \leq \exp\left(-\frac{\delta^2 \mu}{2}\right)$
+            \item $\textbf{Pr}[|\bold{X} - \mu| \geq \delta \mu ] \leq 2\exp\left(-\frac{\delta^2 \mu}{3}\right)$
+        \end{enumerate}
+    \end{theorem}
+    The above inequalities are called Chernoff's bounds. Note that this and the general form can be derived by applying Markov's inequality on the moment-generating function of the random variable. Moreover, there are multiple forms of these but we will work mostly with the above three.
+\end{frame}
+
