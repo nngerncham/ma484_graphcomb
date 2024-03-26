@@ -1,0 +1,34 @@
+\question Show that, for constant \(p \in(0,1)\), almost every
+  graph in \(\mathcal{G}(n, p)\) has diameter 2.
+
+\begin{solution}
+  First, we will show that for be a random graph \(G(n, p)\)
+  where \(p\) is \textit{fixed}. Then, every pair of distinct 
+  vertices $u, v$ have shared neighborhood a.s.
+
+  Define a random variable $X_{u, v}$ to be 1 if $N(u) \cap N(v)
+  = \emptyset$ and 0 otherwise and define $X$ to be the sum of all
+  $X_{u, v}$'s. Note that the probability that two vertices share 
+  no common neighbor is
+  \[ \Pr{N(u) \cap N(v) = \emptyset} = (1-p^2)^{n-2} \]
+  where $p^2$ is the probability that $u$ and $v$ pick the same
+  neighbor where there are $n-2$ of such possibilities.
+  By Markov's Inequality, we have
+  \[
+  \begin{aligned}
+    \Pr{X \geq 1} &\leq \Ex{X} \\
+                  &= \binom{n}{2}(1-p^2)^{n-2} \to 0 \text{ as } n \to \infty \qquad \text{[SageMath verified]}
+  \end{aligned}
+  \]
+  Since $\Pr{X < 1} = 1 - \Pr{X \geq 1}$, the lemma holds.
+
+  Since a graph \(G\) has diameter \(\leq 2\) if it is
+  complete or every pair of vertices share a neighborhood.
+  Hence, we have that
+  \[ \Pr{X < 1} \leq \Pr{\diam(G) \leq 2} \]
+  where the \(X\) is the number of pairs of vertices that don't
+  share a common neighbor. By the lemma, we already have that
+  \(\Pr{X < 1} \to 1\) as \(n \to \infty\). Since it is the lower
+  bound for \(\Pr{\diam(G) \leq 2}\), then we can conclude that
+  \( \Pr{\diam(G) \leq 2} \to 1 \) as \(n \to \infty\) as well.
+\end{solution}
